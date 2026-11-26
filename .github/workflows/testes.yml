@@ -17,6 +17,11 @@ jobs:
       - name: Instalar dependências (versões exatas do uv.lock)
         run: uv sync --locked
 
+      - name: requirements.txt em dia com o uv.lock (usado pelo Streamlit Cloud)
+        run: |
+          uv export --no-dev --no-hashes --no-emit-project --format requirements-txt -o /tmp/req.txt
+          diff <(grep -v '^#' requirements.txt) <(grep -v '^#' /tmp/req.txt)
+
       - name: Lint e formatação (ruff)
         run: |
           uv run ruff check .

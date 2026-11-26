@@ -15,3 +15,6 @@ data/*.duckdb.wal
 # Segredos
 .env
 .streamlit/secrets.toml
+
+# Instruções locais do assistente (fora do repositório público)
+CLAUDE.md

@@ -119,6 +119,22 @@ Com dados reais do ERP, ele acompanharia a semana corrente sem nenhuma mudança 
 
 `.github/workflows/testes.yml` roda `ruff` e `pytest` a cada push e pull request.
 
+## Deploy (Streamlit Community Cloud)
+
+1. Em [share.streamlit.io](https://share.streamlit.io), entre com a conta do GitHub e clique em
+   *Create app*.
+2. Escolha este repositório, branch `main` e arquivo principal `app/Home.py`.
+3. Em *Advanced settings*, selecione Python 3.12.
+
+Não há segredos para configurar no dashboard. Na primeira visita, o app monta o banco a partir
+dos CSVs versionados (leva alguns segundos). As dependências vêm do `requirements.txt`,
+gerado a partir do `uv.lock`; o CI falha se os dois ficarem diferentes. Para atualizar:
+
+```bash
+uv export --no-dev --no-hashes --no-emit-project --format requirements-txt -o requirements.txt
+```
+
 ## Próximas etapas
 
-1. Deploy no Streamlit Community Cloud
+- Migrar as transformações SQL para dbt
+- Conectar a uma exportação real de ERP (Bling, Tiny) no lugar do gerador

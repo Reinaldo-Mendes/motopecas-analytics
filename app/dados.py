@@ -11,7 +11,8 @@ import pandas as pd
 import streamlit as st
 
 RAIZ = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(RAIZ / "src"))  # para importar pipeline, formatacao e diagnostico
+if str(RAIZ / "src") not in sys.path:  # o módulo é relido a cada interação (ver Home.py)
+    sys.path.insert(0, str(RAIZ / "src"))  # para importar pipeline, formatacao e diagnostico
 
 from pipeline import CAMINHO_BANCO, banco_atualizado, construir_banco  # noqa: E402
 

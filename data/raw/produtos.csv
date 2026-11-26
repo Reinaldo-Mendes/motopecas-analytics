@@ -1,0 +1,399 @@
+﻿sku;descricao;categoria;marca;compatibilidade;custo;preco_venda;estoque_atual;estoque_minimo;data_cadastro
+OLE-0001;Óleo 20W50 mineral 1L Mobil;Óleo e lubrificantes;Mobil;Universal;24,19;R$ 40,90;268;117;2022-07-18
+OLE-0002;Óleo 20W50 mineral 1L Castrol;Óleo e lubrificantes;Castrol;Universal;23,58;36,90;35;7;2024-09-11
+OLE-0003;Óleo 20W50 mineral 1L Lubrax;Óleo e lubrificantes;Lubrax;Universal;24,09;43,90;75;19;2022-03-21
+OLE-0004;Óleo 20W50 mineral 1L Ipiranga;Óleo e lubrificantes;Ipiranga;Universal;21,60;35,90;100;42;2024-08-01
+OLE-0005;Óleo 20W50 mineral 1L Yamalube;Óleo e lubrificantes;Yamalube;Universal;23,15;42,90;108;26;2025-03-10
+OLE-0006;Óleo 20W50 mineral 1L Pro Honda;Óleo e lubrificantes;Pro Honda;Universal;19,82;34,90;15;5;2021-11-14
+OLE-0007;Óleo 10W30 semissintético 1L Motul;Óleo e lubrificantes;Motul;Universal;37,93;63,90;32;24;2022-12-31
+OLE-0008;Óleo 10W30 semissintético 1L Castrol;Óleo e lubrificantes;Castrol;Universal;32,25;57,90;58;15;2022-06-09
+OLE-0009;Óleo 10W30 semissintético 1L Mobil;Óleo e lubrificantes;Mobil;Universal;37,34;R$ 56,90;22;22;2021-10-13
+OLE-0010;Óleo 10W40 sintético 1L Motul;Óleo e lubrificantes;Motul;Universal;45,66;66,90;91;26;2023-07-19
+OLE-0011;Óleo 10W40 sintético 1L Castrol;Óleo e lubrificantes;Castrol;Universal;56,17;94,90;5;5;2023-05-30
+OLE-0012;Lubrificante de corrente spray 300ml Motul;Óleo e lubrificantes;Motul;Universal;25,56;45,90;35;34;2026-01-18
+OLE-0013;Lubrificante de corrente spray 300ml Wurth;Óleo e lubrificantes;Wurth;Universal;21,95;39,90;2;3;2023-07-22
+OLE-0014;Lubrificante de corrente spray 300ml Mundial;Óleo e lubrificantes;Mundial;Universal;30,05;53,90;0;8;2021-02-06
+OLE-0015;Fluido de freio DOT 4 200ml Bosch;Óleo e lubrificantes;Bosch;Universal;18,66;37,90;25;6;2024-04-25
+OLE-0016;Fluido de freio DOT 4 200ml Varga;Óleo e lubrificantes;Varga;Universal;14,31;0,00;4;4;2020-10-06
+OLE-0017;Fluido de freio DOT 4 200ml TRW;Óleo e lubrificantes;TRW;Universal;13,60;23,90;2;3;2023-02-11
+PNE-0001;Pneu dianteiro Pirelli - CG 160;Pneus e câmaras;Pirelli;Honda CG 160;183,13;R$ 254,90;2;2;2022-01-25
+PNE-0002;Pneu dianteiro Levorin - CG 160;Pneus e câmaras;Levorin;Honda CG 160;160,48;218,90;6;1;2024-01-19
+PNE-0003;Pneu dianteiro Rinaldi - CG 160;Pneus e câmaras;Rinaldi;Honda CG 160;122,60;R$ 169,90;5;2;2022-12-07
+PNE-0004;Pneu dianteiro Michelin - CG 160;Pneus e câmaras;Michelin;Honda CG 160;172,18;241,90;0;1;2021-02-12
+PNE-0005;Pneu dianteiro Technic - CG 160;Pneus e câmaras;Technic;Honda CG 160;170,89;232,90;4;2;2023-07-01
+PNE-0006;Pneu dianteiro Pirelli - Biz 125;Pneus e câmaras;Pirelli;Honda Biz 125;113,39;151,90;1;2;2024-03-05
+PNE-0007;Pneu dianteiro Levorin - Biz 125;Pneus e câmaras;Levorin;Honda Biz 125;154,94;220,90;2;1;2026-08-07
+PNE-0008;Pneu dianteiro Rinaldi - Biz 125;Pneus e câmaras;Rinaldi;Honda Biz 125;116,41;152,90;2;1;2025-02-25
+PNE-0009;Pneu dianteiro Michelin - Biz 125;Pneus e câmaras;Michelin;Honda Biz 125;182,81;248,90;3;1;2023-04-13
+PNE-0010;Pneu dianteiro Technic - Biz 125;Pneus e câmaras;Technic;Honda Biz 125;183,07;243,90;1;1;2022-08-12
+PNE-0011;Pneu dianteiro Pirelli - Pop 110i;Pneus e câmaras;Pirelli;Honda Pop 110i;128,37;161,90;1;1;2022-01-20
+PNE-0012;Pneu dianteiro Levorin - Pop 110i;Pneus e câmaras;Levorin;Honda Pop 110i;189,46;254,90;1;1;2021-09-07
+PNE-0013;Pneu dianteiro Rinaldi - Pop 110i;Pneus e câmaras;Rinaldi;Honda Pop 110i;165,11;211,90;2;1;2025-07-04
+PNE-0014;Pneu dianteiro Michelin - Pop 110i;Pneus e câmaras;Michelin;Honda Pop 110i;159,08;R$ 210,90;4;1;2020-09-04
+PNE-0015;Pneu dianteiro Technic - Pop 110i;Pneus e câmaras;Technic;Honda Pop 110i;179,33;237,90;3;1;2024-07-02
+PNE-0016;Pneu dianteiro Pirelli - NXR 160 Bros;Pneus e câmaras;Pirelli;Honda NXR 160 Bros;122,98;177,90;1;2;2023-01-17
+PNE-0017;Pneu dianteiro Levorin - NXR 160 Bros;Pneus e câmaras;Levorin;Honda NXR 160 Bros;186,97;243,90;2;2;2024-10-27
+PNE-0018;Pneu dianteiro Rinaldi - NXR 160 Bros;Pneus e câmaras;Rinaldi;Honda NXR 160 Bros;195,66;272,90;5;1;2024-10-12
+PNE-0019;Pneu dianteiro Michelin - NXR 160 Bros;Pneus e câmaras;Michelin;Honda NXR 160 Bros;139,95;177,90;1;1;2023-10-13
+PNE-0020;Pneu dianteiro Technic - NXR 160 Bros;Pneus e câmaras;Technic;Honda NXR 160 Bros;160,14;206,90;1;1;2021-11-20
+PNE-0021;Pneu dianteiro Pirelli - Factor 150;Pneus e câmaras;Pirelli;Yamaha Factor 150;173,71;223,90;3;1;2020-06-06
+PNE-0022;Pneu dianteiro Levorin - Factor 150;Pneus e câmaras;Levorin;Yamaha Factor 150;193,44;R$ 269,90;2;1;2026-03-05
+PNE-0023;Pneu dianteiro Rinaldi - Factor 150;Pneus e câmaras;Rinaldi;Yamaha Factor 150;179,00;244,90;1;1;2021-08-25
+PNE-0024;Pneu dianteiro Michelin - Factor 150;Pneus e câmaras;Michelin;Yamaha Factor 150;119,29;159,90;0;1;2026-01-14
+PNE-0025;Pneu dianteiro Technic - Factor 150;Pneus e câmaras;Technic;Yamaha Factor 150;164,34;216,90;2;1;2023-12-25
+PNE-0026;Pneu dianteiro Pirelli - Fazer 250;Pneus e câmaras;Pirelli;Yamaha Fazer 250;121,37;165,90;1;1;2020-09-12
+PNE-0027;Pneu dianteiro Levorin - Fazer 250;Pneus e câmaras;Levorin;Yamaha Fazer 250;211,76;289,90;1;1;2020-06-13
+PNE-0028;Pneu dianteiro Rinaldi - Fazer 250;Pneus e câmaras;Rinaldi;Yamaha Fazer 250;175,00;219,90;1;1;2024-05-11
+PNE-0029;Pneu dianteiro Michelin - Fazer 250;Pneus e câmaras;Michelin;Yamaha Fazer 250;163,05;229,90;2;1;2022-07-08
+PNE-0030;Pneu dianteiro Technic - Fazer 250;Pneus e câmaras;Technic;Yamaha Fazer 250;163,53;220,90;3;1;2020-09-30
+PNE-0031;Pneu dianteiro Pirelli - XRE 300;Pneus e câmaras;Pirelli;Yamaha XRE 300;172,89;232,90;6;1;2022-06-27
+PNE-0032;Pneu dianteiro Levorin - XRE 300;Pneus e câmaras;Levorin;Yamaha XRE 300;146,47;198,90;2;1;2020-09-11
+PNE-0033;Pneu dianteiro Rinaldi - XRE 300;Pneus e câmaras;Rinaldi;Yamaha XRE 300;112,38;R$ 159,90;1;1;2020-03-24
+PNE-0034;Pneu dianteiro Michelin - XRE 300;Pneus e câmaras;Michelin;Yamaha XRE 300;125,43;170,90;3;1;2022-06-29
+PNE-0035;Pneu dianteiro Technic - XRE 300;Pneus e câmaras;Technic;Yamaha XRE 300;183,95;R$ 240,90;1;1;2024-07-14
+PNE-0036;Pneu traseiro Pirelli - CG 160;Pneus e câmaras;Pirelli;Honda CG 160;273,59;R$ 384,90;28;8;2026-02-21
+PNE-0037;Pneu traseiro Levorin - CG 160;Pneus e câmaras;Levorin;Honda CG 160;305,72;396,90;1;1;2023-10-08
+PNE-0038;Pneu traseiro Rinaldi - CG 160;Pneus e câmaras;Rinaldi;Honda CG 160;244,32;0,00;4;1;2022-06-30
+PNE-0039;Pneu traseiro Michelin - CG 160;Pneus e câmaras;Michelin;Honda CG 160;287,40;377,90;3;2;2021-12-12
+PNE-0040;Pneu traseiro Technic - CG 160;Pneus e câmaras;Technic;Honda CG 160;199,46;269,90;1;1;2022-07-19
+PNE-0041;Pneu traseiro Pirelli - Biz 125;Pneus e câmaras;Pirelli;Honda Biz 125;309,13;396,90;1;1;2023-11-13
+PNE-0042;Pneu traseiro Levorin - Biz 125;Pneus e câmaras;Levorin;Honda Biz 125;223,97;324,90;8;1;2023-05-07
+PNE-0043;Pneu traseiro Rinaldi - Biz 125;Pneus e câmaras;Rinaldi;Honda Biz 125;277,26;R$ 395,90;1;1;2021-06-27
+PNE-0044;Pneu traseiro Michelin - Biz 125;Pneus e câmaras;Michelin;Honda Biz 125;238,21;312,90;0;1;2024-09-10
+PNE-0045;Pneu traseiro Technic - Biz 125;Pneus e câmaras;Technic;Honda Biz 125;262,48;347,90;5;1;2023-10-10
+PNE-0046;Pneu traseiro Pirelli - Pop 110i;Pneus e câmaras;Pirelli;Honda Pop 110i;276,95;360,90;1;1;2020-06-10
+PNE-0047;Pneu traseiro Levorin - Pop 110i;Pneus e câmaras;Levorin;Honda Pop 110i;190,96;0,00;14;5;2024-05-04
+PNE-0048;Pneu traseiro Rinaldi - Pop 110i;Pneus e câmaras;Rinaldi;Honda Pop 110i;176,06;226,90;1;3;2022-10-15
+PNE-0049;Pneu traseiro Michelin - Pop 110i;Pneus e câmaras;Michelin;Honda Pop 110i;298,68;385,90;2;1;2023-10-23
+PNE-0050;Pneu traseiro Technic - Pop 110i;Pneus e câmaras;Technic;Honda Pop 110i;282,16;407,90;4;1;2024-04-24
+PNE-0051;Pneu traseiro Pirelli - NXR 160 Bros;Pneus e câmaras;Pirelli;Honda NXR 160 Bros;174,46;R$ 218,90;3;5;2022-10-01
+PNE-0052;Pneu traseiro Levorin - NXR 160 Bros;Pneus e câmaras;Levorin;Honda NXR 160 Bros;172,41;238,90;1;1;2022-04-07
+PNE-0053;Pneu traseiro Rinaldi - NXR 160 Bros;Pneus e câmaras;Rinaldi;Honda NXR 160 Bros;236,08;327,90;1;1;2025-12-06
+PNE-0054;Pneu traseiro Michelin - NXR 160 Bros;Pneus e câmaras;Michelin;Honda NXR 160 Bros;183,96;259,90;1;1;2024-06-11
+PNE-0055;Pneu traseiro Technic - NXR 160 Bros;Pneus e câmaras;Technic;Honda NXR 160 Bros;275,63;351,90;1;1;2024-03-01
+PNE-0056;Pneu traseiro Pirelli - Factor 150;Pneus e câmaras;Pirelli;Yamaha Factor 150;201,16;271,90;2;2;2021-08-16
+PNE-0057;Pneu traseiro Levorin - Factor 150;Pneus e câmaras;Levorin;Yamaha Factor 150;312,46;408,90;0;1;2020-08-06
+PNE-0058;Pneu traseiro Rinaldi - Factor 150;Pneus e câmaras;Rinaldi;Yamaha Factor 150;154,23;209,90;1;1;2023-12-10
+PNE-0059;Pneu traseiro Michelin - Factor 150;Pneus e câmaras;Michelin;Yamaha Factor 150;168,00;214,90;1;1;2023-04-02
+PNE-0060;Pneu traseiro Technic - Factor 150;Pneus e câmaras;Technic;Yamaha Factor 150;314,26;430,90;2;1;2023-02-19
+PNE-0061;Pneu traseiro Pirelli - Fazer 250;Pneus e câmaras;Pirelli;Yamaha Fazer 250;286,74;385,90;2;1;2023-01-20
+PNE-0062;Pneu traseiro Levorin - Fazer 250;Pneus e câmaras;Levorin;Yamaha Fazer 250;153,03;194,90;1;1;2026-02-26
+PNE-0063;Pneu traseiro Rinaldi - Fazer 250;Pneus e câmaras;Rinaldi;Yamaha Fazer 250;285,46;370,90;4;1;2024-07-21
+PNE-0064;Pneu traseiro Michelin - Fazer 250;Pneus e câmaras;Michelin;Yamaha Fazer 250;253,02;R$ 360,90;3;2;2022-03-31
+PNE-0065;Pneu traseiro Technic - Fazer 250;Pneus e câmaras;Technic;Yamaha Fazer 250;220,14;291,90;3;1;2023-01-26
+PNE-0066;Pneu traseiro Pirelli - XRE 300;Pneus e câmaras;Pirelli;Yamaha XRE 300;260,83;R$ 371,90;1;1;2026-01-08
+PNE-0067;Pneu traseiro Levorin - XRE 300;Pneus e câmaras;Levorin;Yamaha XRE 300;192,13;R$ 249,90;4;1;2023-07-11
+PNE-0068;Pneu traseiro Rinaldi - XRE 300;Pneus e câmaras;Rinaldi;Yamaha XRE 300;288,82;367,90;3;1;2020-04-04
+PNE-0069;Pneu traseiro Michelin - XRE 300;Pneus e câmaras;Michelin;Yamaha XRE 300;251,05;321,90;2;2;2021-10-29
+PNE-0070;Pneu traseiro Technic - XRE 300;Pneus e câmaras;Technic;Yamaha XRE 300;202,76;259,90;1;1;2022-10-08
+PNE-0071;Câmara de ar dianteira Pirelli - CG 160;Pneus e câmaras;Pirelli;Honda CG 160;21,66;37,90;2;2;2025-01-15
+PNE-0072;Câmara de ar dianteira Levorin - CG 160;Pneus e câmaras;Levorin;Honda CG 160;21,15;34,90;2;1;2020-11-20
+PNE-0073;Câmara de ar dianteira Rinaldi - CG 160;Pneus e câmaras;Rinaldi;Honda CG 160;21,75;35,90;1;2;2020-06-17
+PNE-0074;Câmara de ar dianteira Pirelli - Biz 125;Pneus e câmaras;Pirelli;Honda Biz 125;26,81;47,90;7;2;2024-08-31
+PNE-0075;Câmara de ar dianteira Levorin - Biz 125;Pneus e câmaras;Levorin;Honda Biz 125;25,05;48,90;1;1;2020-04-04
+PNE-0076;Câmara de ar dianteira Rinaldi - Biz 125;Pneus e câmaras;Rinaldi;Honda Biz 125;20,43;R$ 34,90;27;7;2021-05-22
+PNE-0077;Câmara de ar dianteira Pirelli - Pop 110i;Pneus e câmaras;Pirelli;Honda Pop 110i;22,49;41,90;1;1;2024-05-02
+PNE-0078;Câmara de ar dianteira Levorin - Pop 110i;Pneus e câmaras;Levorin;Honda Pop 110i;20,49;R$ 35,90;1;1;2021-02-15
+PNE-0079;Câmara de ar dianteira Rinaldi - Pop 110i;Pneus e câmaras;Rinaldi;Honda Pop 110i;21,02;40,90;5;1;2024-04-19
+PNE-0080;Câmara de ar dianteira Pirelli - NXR 160 Bros;Pneus e câmaras;Pirelli;Honda NXR 160 Bros;29,25;47,90;18;2;2024-07-29
+PNE-0081;Câmara de ar dianteira Levorin - NXR 160 Bros;Pneus e câmaras;Levorin;Honda NXR 160 Bros;29,03;57,90;1;1;2024-04-04
+PNE-0082;Câmara de ar dianteira Rinaldi - NXR 160 Bros;Pneus e câmaras;Rinaldi;Honda NXR 160 Bros;27,79;51,90;4;1;2022-07-26
+PNE-0083;Câmara de ar dianteira Pirelli - Factor 150;Pneus e câmaras;Pirelli;Yamaha Factor 150;21,35;38,90;1;1;2021-10-12
+PNE-0084;Câmara de ar dianteira Levorin - Factor 150;Pneus e câmaras;Levorin;Yamaha Factor 150;28,58;51,90;1;1;2022-10-28
+PNE-0085;Câmara de ar dianteira Rinaldi - Factor 150;Pneus e câmaras;Rinaldi;Yamaha Factor 150;26,40;45,90;1;1;2024-03-24
+PNE-0086;Câmara de ar dianteira Pirelli - Fazer 250;Pneus e câmaras;Pirelli;Yamaha Fazer 250;24,78;43,90;6;3;2023-11-06
+PNE-0087;Câmara de ar dianteira Levorin - Fazer 250;Pneus e câmaras;Levorin;Yamaha Fazer 250;23,68;41,90;1;1;2020-08-20
+PNE-0088;Câmara de ar dianteira Rinaldi - Fazer 250;Pneus e câmaras;Rinaldi;Yamaha Fazer 250;23,79;44,90;12;1;2020-02-05
+PNE-0089;Câmara de ar dianteira Pirelli - XRE 300;Pneus e câmaras;Pirelli;Yamaha XRE 300;29,49;57,90;6;2;2021-02-13
+PNE-0090;Câmara de ar dianteira Levorin - XRE 300;Pneus e câmaras;Levorin;Yamaha XRE 300;23,28;42,90;0;2;2024-04-26
+PNE-0091;Câmara de ar dianteira Rinaldi - XRE 300;Pneus e câmaras;Rinaldi;Yamaha XRE 300;26,53;50,90;1;1;2026-04-13
+PNE-0092;Câmara de ar traseira Pirelli - CG 160;Pneus e câmaras;Pirelli;Honda CG 160;29,60;50,90;6;6;2021-06-04
+PNE-0093;Câmara de ar traseira Levorin - CG 160;Pneus e câmaras;Levorin;Honda CG 160;24,43;45,90;1;1;2022-03-29
+PNE-0094;Câmara de ar traseira Rinaldi - CG 160;Pneus e câmaras;Rinaldi;Honda CG 160;29,37;48,90;0;6;2024-02-14
+PNE-0095;Câmara de ar traseira Pirelli - Biz 125;Pneus e câmaras;Pirelli;Honda Biz 125;23,01;45,90;4;1;2019-12-05
+PNE-0096;Câmara de ar traseira Levorin - Biz 125;Pneus e câmaras;Levorin;Honda Biz 125;33,51;64,90;4;3;2022-08-26
+PNE-0097;Câmara de ar traseira Rinaldi - Biz 125;Pneus e câmaras;Rinaldi;Honda Biz 125;31,39;60,90;1;1;2025-09-21
+PNE-0098;Câmara de ar traseira Pirelli - Pop 110i;Pneus e câmaras;Pirelli;Honda Pop 110i;25,04;45,90;2;1;2023-10-18
+PNE-0099;Câmara de ar traseira Levorin - Pop 110i;Pneus e câmaras;Levorin;Honda Pop 110i;29,39;49,90;4;2;2022-11-08
+PNE-0100;Câmara de ar traseira Rinaldi - Pop 110i;Pneus e câmaras;Rinaldi;Honda Pop 110i;28,87;51,90;5;1;2024-07-09
+PNE-0101;Câmara de ar traseira Pirelli - NXR 160 Bros;Pneus e câmaras;Pirelli;Honda NXR 160 Bros;31,17;59,90;20;6;2023-03-27
+PNE-0102;Câmara de ar traseira Levorin - NXR 160 Bros;Pneus e câmaras;Levorin;Honda NXR 160 Bros;29,20;57,90;1;2;2022-07-11
+PNE-0103;Câmara de ar traseira Rinaldi - NXR 160 Bros;Pneus e câmaras;Rinaldi;Honda NXR 160 Bros;23,41;38,90;1;1;2020-03-01
+PNE-0104;Câmara de ar traseira Pirelli - Factor 150;Pneus e câmaras;Pirelli;Yamaha Factor 150;27,02;51,90;3;2;2024-05-26
+PNE-0105;Câmara de ar traseira Levorin - Factor 150;Pneus e câmaras;Levorin;Yamaha Factor 150;26,00;50,90;0;1;2021-12-28
+PNE-0106;Câmara de ar traseira Rinaldi - Factor 150;Pneus e câmaras;Rinaldi;Yamaha Factor 150;25,25;R$ 44,90;13;1;2020-04-29
+PNE-0107;Câmara de ar traseira Pirelli - Fazer 250;Pneus e câmaras;Pirelli;Yamaha Fazer 250;23,89;39,90;5;2;2020-11-11
+PNE-0108;Câmara de ar traseira Levorin - Fazer 250;Pneus e câmaras;Levorin;Yamaha Fazer 250;27,25;47,90;8;2;2020-04-12
+PNE-0109;Câmara de ar traseira Rinaldi - Fazer 250;Pneus e câmaras;Rinaldi;Yamaha Fazer 250;28,64;56,90;10;1;2024-12-31
+PNE-0110;Câmara de ar traseira Pirelli - XRE 300;Pneus e câmaras;Pirelli;Yamaha XRE 300;27,75;48,90;3;2;2020-11-20
+PNE-0111;Câmara de ar traseira Levorin - XRE 300;Pneus e câmaras;Levorin;Yamaha XRE 300;30,61;60,90;1;1;2020-01-07
+PNE-0112;Câmara de ar traseira Rinaldi - XRE 300;Pneus e câmaras;Rinaldi;Yamaha XRE 300;32,21;59,90;10;1;2025-08-27
+REL-0001;Kit relação Vaz - CG 160;Relação (kit transmissão);Vaz;Honda CG 160;166,47;267,90;21;5;2022-05-17
+REL-0002;Kit relação Riffel - CG 160;Relação (kit transmissão);Riffel;Honda CG 160;149,06;245,90;1;1;2022-03-21
+REL-0003;Kit relação DID - CG 160;Relação (kit transmissão);DID;Honda CG 160;149,61;229,90;7;2;2025-09-14
+REL-0004;Kit relação Allen - CG 160;Relação (kit transmissão);Allen;Honda CG 160;209,40;342,90;3;1;2023-05-27
+REL-0005;Kit relação Vaz - Biz 125;Relação (kit transmissão);Vaz;Honda Biz 125;219,61;365,90;4;1;2020-01-21
+REL-0006;Kit relação Riffel - Biz 125;Relação (kit transmissão);Riffel;Honda Biz 125;198,80;284,90;1;1;2020-02-16
+REL-0007;Kit relação DID - Biz 125;Relação (kit transmissão);DID;Honda Biz 125;101,76;169,90;8;2;2022-12-15
+REL-0008;Kit relação Allen - Biz 125;Relação (kit transmissão);Allen;Honda Biz 125;121,31;0,00;5;1;2020-11-13
+REL-0009;Kit relação Vaz - Pop 110i;Relação (kit transmissão);Vaz;Honda Pop 110i;115,77;193,90;1;1;2022-11-15
+REL-0010;Kit relação Riffel - Pop 110i;Relação (kit transmissão);Riffel;Honda Pop 110i;94,70;132,90;3;1;2020-12-02
+REL-0011;Kit relação DID - Pop 110i;Relação (kit transmissão);DID;Honda Pop 110i;168,77;276,90;1;1;2021-12-14
+REL-0012;Kit relação Allen - Pop 110i;Relação (kit transmissão);Allen;Honda Pop 110i;200,42;284,90;1;1;2022-07-08
+REL-0013;Kit relação Vaz - NXR 160 Bros;Relação (kit transmissão);Vaz;Honda NXR 160 Bros;210,61;343,90;9;3;2024-03-13
+REL-0014;Kit relação Riffel - NXR 160 Bros;Relação (kit transmissão);Riffel;Honda NXR 160 Bros;198,94;280,90;4;1;2021-08-11
+REL-0015;Kit relação DID - NXR 160 Bros;Relação (kit transmissão);DID;Honda NXR 160 Bros;106,24;164,90;2;2;2023-04-01
+REL-0016;Kit relação Allen - NXR 160 Bros;Relação (kit transmissão);Allen;Honda NXR 160 Bros;171,90;284,90;1;1;2023-10-05
+REL-0017;Kit relação Vaz - Factor 150;Relação (kit transmissão);Vaz;Yamaha Factor 150;185,50;270,90;5;1;2023-11-17
+REL-0018;Kit relação Riffel - Factor 150;Relação (kit transmissão);Riffel;Yamaha Factor 150;182,29;308,90;1;1;2020-01-01
+REL-0019;Kit relação DID - Factor 150;Relação (kit transmissão);DID;Yamaha Factor 150;97,09;153,90;1;1;2025-01-24
+REL-0020;Kit relação Allen - Factor 150;Relação (kit transmissão);Allen;Yamaha Factor 150;204,94;330,90;3;2;2020-11-25
+REL-0021;Kit relação Vaz - Fazer 250;Relação (kit transmissão);Vaz;Yamaha Fazer 250;101,92;148,90;4;1;2020-07-27
+REL-0022;Kit relação Riffel - Fazer 250;Relação (kit transmissão);Riffel;Yamaha Fazer 250;149,61;R$ 244,90;4;1;2024-09-03
+REL-0023;Kit relação DID - Fazer 250;Relação (kit transmissão);DID;Yamaha Fazer 250;164,41;R$ 237,90;1;1;2021-12-06
+REL-0024;Kit relação Allen - Fazer 250;Relação (kit transmissão);Allen;Yamaha Fazer 250;129,17;203,90;2;1;2021-12-27
+REL-0025;Kit relação Vaz - XRE 300;Relação (kit transmissão);Vaz;Yamaha XRE 300;174,40;293,90;1;1;2023-01-24
+REL-0026;Kit relação Riffel - XRE 300;Relação (kit transmissão);Riffel;Yamaha XRE 300;156,09;237,90;3;2;2021-07-20
+REL-0027;Kit relação DID - XRE 300;Relação (kit transmissão);DID;Yamaha XRE 300;105,50;151,90;5;1;2022-10-26
+REL-0028;Kit relação Allen - XRE 300;Relação (kit transmissão);Allen;Yamaha XRE 300;129,61;198,90;1;1;2022-08-31
+FRE-0001;Pastilha de freio dianteira Cobreq - CG 160;Freios;Cobreq;Honda CG 160;27,69;54,90;1;1;2022-09-15
+FRE-0002;Pastilha de freio dianteira Fras-le - CG 160;Freios;Fras-le;Honda CG 160;19,35;39,90;1;1;2020-11-21
+FRE-0003;Pastilha de freio dianteira Vaz - CG 160;Freios;Vaz;Honda CG 160;15,72;R$ 30,90;29;9;2021-09-18
+FRE-0004;Pastilha de freio dianteira Syl - CG 160;Freios;Syl;Honda CG 160;19,51;39,90;1;1;2022-12-18
+FRE-0005;Pastilha de freio dianteira Cobreq - Biz 125;Freios;Cobreq;Honda Biz 125;29,04;59,90;4;2;2020-04-09
+FRE-0006;Pastilha de freio dianteira Fras-le - Biz 125;Freios;Fras-le;Honda Biz 125;21,32;45,90;0;2;2020-11-19
+FRE-0007;Pastilha de freio dianteira Vaz - Biz 125;Freios;Vaz;Honda Biz 125;23,63;48,90;8;2;2026-09-24
+FRE-0008;Pastilha de freio dianteira Syl - Biz 125;Freios;Syl;Honda Biz 125;25,25;52,90;1;1;2025-04-24
+FRE-0009;Pastilha de freio dianteira Cobreq - Pop 110i;Freios;Cobreq;Honda Pop 110i;33,42;66,90;1;1;2022-11-26
+FRE-0010;Pastilha de freio dianteira Fras-le - Pop 110i;Freios;Fras-le;Honda Pop 110i;31,00;59,90;8;1;2021-01-10
+FRE-0011;Pastilha de freio dianteira Vaz - Pop 110i;Freios;Vaz;Honda Pop 110i;24,88;45,90;5;1;2023-03-17
+FRE-0012;Pastilha de freio dianteira Syl - Pop 110i;Freios;Syl;Honda Pop 110i;31,84;58,90;13;1;2023-06-30
+FRE-0013;Pastilha de freio dianteira Cobreq - NXR 160 Bros;Freios;Cobreq;Honda NXR 160 Bros;21,68;R$ 40,90;11;4;2022-08-11
+FRE-0014;Pastilha de freio dianteira Fras-le - NXR 160 Bros;Freios;Fras-le;Honda NXR 160 Bros;29,85;53,90;9;1;2020-01-24
+FRE-0015;Pastilha de freio dianteira Vaz - NXR 160 Bros;Freios;Vaz;Honda NXR 160 Bros;32,13;62,90;4;2;2025-07-06
+FRE-0016;Pastilha de freio dianteira Syl - NXR 160 Bros;Freios;Syl;Honda NXR 160 Bros;27,02;49,90;8;1;2022-12-10
+FRE-0017;Pastilha de freio dianteira Cobreq - Factor 150;Freios;Cobreq;Yamaha Factor 150;34,17;75,90;4;2;2022-07-23
+FRE-0018;Pastilha de freio dianteira Fras-le - Factor 150;Freios;Fras-le;Yamaha Factor 150;21,22;44,90;15;1;2023-05-25
+FRE-0019;Pastilha de freio dianteira Vaz - Factor 150;Freios;Vaz;Yamaha Factor 150;22,76;46,90;4;1;2021-08-03
+FRE-0020;Pastilha de freio dianteira Syl - Factor 150;Freios;Syl;Yamaha Factor 150;19,18;38,90;10;1;2023-02-07
+FRE-0021;Pastilha de freio dianteira Cobreq - Fazer 250;Freios;Cobreq;Yamaha Fazer 250;18,32;39,90;0;3;2022-02-06
+FRE-0022;Pastilha de freio dianteira Fras-le - Fazer 250;Freios;Fras-le;Yamaha Fazer 250;26,12;55,90;6;1;2023-01-04
+FRE-0023;Pastilha de freio dianteira Vaz - Fazer 250;Freios;Vaz;Yamaha Fazer 250;17,83;R$ 35,90;12;1;2023-04-02
+FRE-0024;Pastilha de freio dianteira Syl - Fazer 250;Freios;Syl;Yamaha Fazer 250;16,60;34,90;1;1;2020-01-22
+FRE-0025;Pastilha de freio dianteira Cobreq - XRE 300;Freios;Cobreq;Yamaha XRE 300;24,39;45,90;0;1;2023-02-16
+FRE-0026;Pastilha de freio dianteira Fras-le - XRE 300;Freios;Fras-le;Yamaha XRE 300;33,14;60,90;1;1;2024-06-24
+FRE-0027;Pastilha de freio dianteira Vaz - XRE 300;Freios;Vaz;Yamaha XRE 300;20,84;41,90;4;1;2022-12-19
+FRE-0028;Pastilha de freio dianteira Syl - XRE 300;Freios;Syl;Yamaha XRE 300;24,87;0,00;3;1;2022-03-18
+FRE-0029;Lona de freio traseira Cobreq - CG 160;Freios;Cobreq;Honda CG 160;27,65;56,90;12;5;2024-05-12
+FRE-0030;Lona de freio traseira Fras-le - CG 160;Freios;Fras-le;Honda CG 160;25,05;52,90;6;4;2023-04-29
+FRE-0031;Lona de freio traseira Cobreq - Biz 125;Freios;Cobreq;Honda Biz 125;20,50;41,90;6;3;2024-01-04
+FRE-0032;Lona de freio traseira Fras-le - Biz 125;Freios;Fras-le;Honda Biz 125;27,67;55,90;1;1;2025-09-18
+FRE-0033;Lona de freio traseira Cobreq - Pop 110i;Freios;Cobreq;Honda Pop 110i;27,78;55,90;1;2;2021-04-10
+FRE-0034;Lona de freio traseira Fras-le - Pop 110i;Freios;Fras-le;Honda Pop 110i;23,81;50,90;1;1;2020-01-25
+FRE-0035;Lona de freio traseira Cobreq - NXR 160 Bros;Freios;Cobreq;Honda NXR 160 Bros;22,48;45,90;0;2;2022-11-30
+FRE-0036;Lona de freio traseira Fras-le - NXR 160 Bros;Freios;Fras-le;Honda NXR 160 Bros;20,98;45,90;6;2;2020-08-01
+FRE-0037;Lona de freio traseira Cobreq - Factor 150;Freios;Cobreq;Yamaha Factor 150;17,66;34,90;5;3;2023-10-09
+FRE-0038;Lona de freio traseira Fras-le - Factor 150;Freios;Fras-le;Yamaha Factor 150;15,37;33,90;3;2;2020-12-28
+FRE-0039;Lona de freio traseira Cobreq - Fazer 250;Freios;Cobreq;Yamaha Fazer 250;19,61;39,90;2;2;2022-01-23
+FRE-0040;Lona de freio traseira Fras-le - Fazer 250;Freios;Fras-le;Yamaha Fazer 250;19,17;39,90;1;1;2021-02-06
+FRE-0041;Lona de freio traseira Cobreq - XRE 300;Freios;Cobreq;Yamaha XRE 300;29,73;60,90;10;3;2021-02-10
+FRE-0042;Lona de freio traseira Fras-le - XRE 300;Freios;Fras-le;Yamaha XRE 300;26,42;57,90;14;1;2026-06-06
+FRE-0043;Disco de freio dianteiro Vaz - CG 160;Freios;Vaz;Honda CG 160;157,06;256,90;5;1;2023-07-24
+FRE-0044;Disco de freio dianteiro Fras-le - CG 160;Freios;Fras-le;Honda CG 160;89,13;144,90;4;1;2022-03-29
+FRE-0045;Disco de freio dianteiro Vaz - Biz 125;Freios;Vaz;Honda Biz 125;124,25;198,90;1;1;2020-10-05
+FRE-0046;Disco de freio dianteiro Fras-le - Biz 125;Freios;Fras-le;Honda Biz 125;158,77;236,90;1;1;2020-01-21
+FRE-0047;Disco de freio dianteiro Vaz - Pop 110i;Freios;Vaz;Honda Pop 110i;140,00;0,00;1;1;2020-04-08
+FRE-0048;Disco de freio dianteiro Fras-le - Pop 110i;Freios;Fras-le;Honda Pop 110i;83,28;136,90;8;1;2023-12-08
+FRE-0049;Disco de freio dianteiro Vaz - NXR 160 Bros;Freios;Vaz;Honda NXR 160 Bros;158,84;244,90;2;1;2021-11-21
+FRE-0050;Disco de freio dianteiro Fras-le - NXR 160 Bros;Freios;Fras-le;Honda NXR 160 Bros;112,93;184,90;1;1;2024-04-24
+FRE-0051;Disco de freio dianteiro Vaz - Factor 150;Freios;Vaz;Yamaha Factor 150;124,44;204,90;1;1;2021-07-16
+FRE-0052;Disco de freio dianteiro Fras-le - Factor 150;Freios;Fras-le;Yamaha Factor 150;145,81;205,90;6;1;2019-12-13
+FRE-0053;Disco de freio dianteiro Vaz - Fazer 250;Freios;Vaz;Yamaha Fazer 250;83,90;120,90;1;1;2024-07-26
+FRE-0054;Disco de freio dianteiro Fras-le - Fazer 250;Freios;Fras-le;Yamaha Fazer 250;137,06;223,90;4;1;2021-08-07
+FRE-0055;Disco de freio dianteiro Vaz - XRE 300;Freios;Vaz;Yamaha XRE 300;139,15;0,00;1;1;2020-03-06
+FRE-0056;Disco de freio dianteiro Fras-le - XRE 300;Freios;Fras-le;Yamaha XRE 300;98,76;156,90;15;1;2020-08-30
+ELE-0001;Vela de ignição NGK - CG 160;Elétrica;NGK;Honda CG 160;12,06;24,90;9;3;2026-04-08
+ELE-0002;Vela de ignição Bosch - CG 160;Elétrica;Bosch;Honda CG 160;12,38;24,90;11;2;2024-04-25
+ELE-0003;Vela de ignição NGK - Biz 125;Elétrica;NGK;Honda Biz 125;20,73;R$ 39,90;13;1;2020-04-14
+ELE-0004;Vela de ignição Bosch - Biz 125;Elétrica;Bosch;Honda Biz 125;16,52;35,90;1;2;2026-04-26
+ELE-0005;Vela de ignição NGK - Pop 110i;Elétrica;NGK;Honda Pop 110i;19,67;38,90;2;2;2021-12-24
+ELE-0006;Vela de ignição Bosch - Pop 110i;Elétrica;Bosch;Honda Pop 110i;23,53;44,90;11;2;2020-01-06
+ELE-0007;Vela de ignição NGK - NXR 160 Bros;Elétrica;NGK;Honda NXR 160 Bros;16,45;34,90;11;4;2024-10-20
+ELE-0008;Vela de ignição Bosch - NXR 160 Bros;Elétrica;Bosch;Honda NXR 160 Bros;24,98;47,90;2;1;2025-05-04
+ELE-0009;Vela de ignição NGK - Factor 150;Elétrica;NGK;Yamaha Factor 150;13,78;27,90;1;1;2024-08-20
+ELE-0010;Vela de ignição Bosch - Factor 150;Elétrica;Bosch;Yamaha Factor 150;17,10;37,90;4;4;2020-03-24
+ELE-0011;Vela de ignição NGK - Fazer 250;Elétrica;NGK;Yamaha Fazer 250;13,75;26,90;2;2;2021-06-25
+ELE-0012;Vela de ignição Bosch - Fazer 250;Elétrica;Bosch;Yamaha Fazer 250;14,63;26,90;14;1;2020-05-03
+ELE-0013;Vela de ignição NGK - XRE 300;Elétrica;NGK;Yamaha XRE 300;20,25;39,90;1;1;2022-01-23
+ELE-0014;Vela de ignição Bosch - XRE 300;Elétrica;Bosch;Yamaha XRE 300;24,47;51,90;0;1;2024-06-01
+ELE-0015;Bateria Moura - CG 160;Elétrica;Moura;Honda CG 160;121,30;190,90;4;1;2024-09-11
+ELE-0016;Bateria Heliar - CG 160;Elétrica;Heliar;Honda CG 160;125,79;198,90;1;1;2023-03-06
+ELE-0017;Bateria Yuasa - CG 160;Elétrica;Yuasa;Honda CG 160;171,65;257,90;1;1;2021-03-04
+ELE-0018;Bateria Route - CG 160;Elétrica;Route;Honda CG 160;122,93;173,90;1;1;2024-01-31
+ELE-0019;Bateria Moura - Biz 125;Elétrica;Moura;Honda Biz 125;107,10;167,90;2;1;2020-08-21
+ELE-0020;Bateria Heliar - Biz 125;Elétrica;Heliar;Honda Biz 125;151,76;234,90;2;1;2023-08-26
+ELE-0021;Bateria Yuasa - Biz 125;Elétrica;Yuasa;Honda Biz 125;138,22;203,90;1;1;2022-05-21
+ELE-0022;Bateria Route - Biz 125;Elétrica;Route;Honda Biz 125;164,21;R$ 255,90;3;1;2023-10-30
+ELE-0023;Bateria Moura - Pop 110i;Elétrica;Moura;Honda Pop 110i;176,63;246,90;1;1;2022-07-15
+ELE-0024;Bateria Heliar - Pop 110i;Elétrica;Heliar;Honda Pop 110i;101,21;153,90;4;1;2022-08-09
+ELE-0025;Bateria Yuasa - Pop 110i;Elétrica;Yuasa;Honda Pop 110i;146,40;R$ 213,90;1;1;2024-10-19
+ELE-0026;Bateria Route - Pop 110i;Elétrica;Route;Honda Pop 110i;195,58;269,90;1;1;2026-06-15
+ELE-0027;Bateria Moura - NXR 160 Bros;Elétrica;Moura;Honda NXR 160 Bros;117,07;159,90;6;1;2020-12-16
+ELE-0028;Bateria Heliar - NXR 160 Bros;Elétrica;Heliar;Honda NXR 160 Bros;146,77;209,90;1;1;2020-03-23
+ELE-0029;Bateria Yuasa - NXR 160 Bros;Elétrica;Yuasa;Honda NXR 160 Bros;102,28;147,90;1;1;2023-03-15
+ELE-0030;Bateria Route - NXR 160 Bros;Elétrica;Route;Honda NXR 160 Bros;166,80;233,90;1;1;2020-07-01
+ELE-0031;Bateria Moura - Factor 150;Elétrica;Moura;Yamaha Factor 150;133,35;R$ 193,90;1;1;2020-07-04
+ELE-0032;Bateria Heliar - Factor 150;Elétrica;Heliar;Yamaha Factor 150;102,33;160,90;5;1;2019-12-20
+ELE-0033;Bateria Yuasa - Factor 150;Elétrica;Yuasa;Yamaha Factor 150;145,90;214,90;3;1;2022-12-29
+ELE-0034;Bateria Route - Factor 150;Elétrica;Route;Yamaha Factor 150;137,45;212,90;1;1;2020-08-23
+ELE-0035;Bateria Moura - Fazer 250;Elétrica;Moura;Yamaha Fazer 250;118,64;169,90;5;1;2022-01-18
+ELE-0036;Bateria Heliar - Fazer 250;Elétrica;Heliar;Yamaha Fazer 250;142,78;217,90;0;1;2024-07-16
+ELE-0037;Bateria Yuasa - Fazer 250;Elétrica;Yuasa;Yamaha Fazer 250;126,38;200,90;1;1;2023-07-01
+ELE-0038;Bateria Route - Fazer 250;Elétrica;Route;Yamaha Fazer 250;140,68;214,90;1;1;2026-06-05
+ELE-0039;Bateria Moura - XRE 300;Elétrica;Moura;Yamaha XRE 300;95,21;131,90;15;1;2024-01-14
+ELE-0040;Bateria Heliar - XRE 300;Elétrica;Heliar;Yamaha XRE 300;91,02;127,90;1;1;2022-09-09
+ELE-0041;Bateria Yuasa - XRE 300;Elétrica;Yuasa;Yamaha XRE 300;102,17;153,90;1;1;2021-01-07
+ELE-0042;Bateria Route - XRE 300;Elétrica;Route;Yamaha XRE 300;152,61;228,90;6;1;2024-02-03
+ELE-0043;Lâmpada farol H4 12V Philips;Elétrica;Philips;Universal;10,09;R$ 24,90;329;74;2022-05-21
+ELE-0044;Lâmpada farol H4 12V Osram;Elétrica;Osram;Universal;13,25;31,90;10;3;2025-10-03
+ELE-0045;Regulador retificador Magnetron - CG 160;Elétrica;Magnetron;Honda CG 160;52,71;98,90;5;1;2022-03-11
+ELE-0046;Regulador retificador Rinaldi - CG 160;Elétrica;Rinaldi;Honda CG 160;70,17;132,90;3;1;2023-08-23
+ELE-0047;Regulador retificador Magnetron - Biz 125;Elétrica;Magnetron;Honda Biz 125;80,66;136,90;1;1;2020-01-31
+ELE-0048;Regulador retificador Rinaldi - Biz 125;Elétrica;Rinaldi;Honda Biz 125;70,04;R$ 116,90;1;1;2024-06-13
+ELE-0049;Regulador retificador Magnetron - Pop 110i;Elétrica;Magnetron;Honda Pop 110i;55,88;90,90;12;1;2020-02-03
+ELE-0050;Regulador retificador Rinaldi - Pop 110i;Elétrica;Rinaldi;Honda Pop 110i;57,32;92,90;1;1;2020-12-07
+ELE-0051;Regulador retificador Magnetron - NXR 160 Bros;Elétrica;Magnetron;Honda NXR 160 Bros;76,26;138,90;1;1;2020-08-15
+ELE-0052;Regulador retificador Rinaldi - NXR 160 Bros;Elétrica;Rinaldi;Honda NXR 160 Bros;55,86;104,90;1;1;2020-08-22
+ELE-0053;Regulador retificador Magnetron - Factor 150;Elétrica;Magnetron;Yamaha Factor 150;46,30;76,90;1;1;2025-11-27
+ELE-0054;Regulador retificador Rinaldi - Factor 150;Elétrica;Rinaldi;Yamaha Factor 150;48,65;85,90;3;1;2020-04-01
+ELE-0055;Regulador retificador Magnetron - Fazer 250;Elétrica;Magnetron;Yamaha Fazer 250;40,20;64,90;1;1;2021-11-27
+ELE-0056;Regulador retificador Rinaldi - Fazer 250;Elétrica;Rinaldi;Yamaha Fazer 250;69,23;113,90;8;1;2020-02-05
+ELE-0057;Regulador retificador Magnetron - XRE 300;Elétrica;Magnetron;Yamaha XRE 300;84,02;147,90;9;1;2020-07-05
+ELE-0058;Regulador retificador Rinaldi - XRE 300;Elétrica;Rinaldi;Yamaha XRE 300;53,66;86,90;5;1;2024-12-21
+ELE-0059;Pisca LED (par) Sinalsul;Elétrica;Sinalsul;Universal;11,54;26,90;2;2;2022-12-26
+ELE-0060;Pisca LED (par) Rinaldi;Elétrica;Rinaldi;Universal;8,22;18,90;53;14;2024-04-01
+CAB-0001;Cabo de embreagem Controlflex - CG 160;Cabos;Controlflex;Honda CG 160;23,36;R$ 46,90;3;2;2024-04-30
+CAB-0002;Cabo de embreagem Rinaldi - CG 160;Cabos;Rinaldi;Honda CG 160;19,20;39,90;3;3;2022-11-29
+CAB-0003;Cabo de embreagem Controlflex - NXR 160 Bros;Cabos;Controlflex;Honda NXR 160 Bros;21,44;45,90;2;1;2020-11-03
+CAB-0004;Cabo de embreagem Rinaldi - NXR 160 Bros;Cabos;Rinaldi;Honda NXR 160 Bros;24,78;51,90;1;1;2022-05-05
+CAB-0005;Cabo de embreagem Controlflex - Factor 150;Cabos;Controlflex;Yamaha Factor 150;12,16;26,90;0;1;2022-06-17
+CAB-0006;Cabo de embreagem Rinaldi - Factor 150;Cabos;Rinaldi;Yamaha Factor 150;17,30;33,90;0;1;2023-08-17
+CAB-0007;Cabo de embreagem Controlflex - Fazer 250;Cabos;Controlflex;Yamaha Fazer 250;17,14;37,90;1;1;2022-01-19
+CAB-0008;Cabo de embreagem Rinaldi - Fazer 250;Cabos;Rinaldi;Yamaha Fazer 250;24,50;48,90;3;1;2021-09-09
+CAB-0009;Cabo de embreagem Controlflex - XRE 300;Cabos;Controlflex;Yamaha XRE 300;23,17;52,90;4;1;2026-04-19
+CAB-0010;Cabo de embreagem Rinaldi - XRE 300;Cabos;Rinaldi;Yamaha XRE 300;18,11;39,90;1;1;2021-03-29
+CAB-0011;Cabo de acelerador Controlflex - CG 160;Cabos;Controlflex;Honda CG 160;16,93;35,90;3;5;2021-11-04
+CAB-0012;Cabo de acelerador Rinaldi - CG 160;Cabos;Rinaldi;Honda CG 160;21,50;47,90;4;4;2020-05-09
+CAB-0013;Cabo de acelerador Controlflex - Biz 125;Cabos;Controlflex;Honda Biz 125;13,36;30,90;1;1;2022-09-27
+CAB-0014;Cabo de acelerador Rinaldi - Biz 125;Cabos;Rinaldi;Honda Biz 125;22,38;43,90;2;2;2020-03-25
+CAB-0015;Cabo de acelerador Controlflex - Pop 110i;Cabos;Controlflex;Honda Pop 110i;21,67;41,90;0;3;2023-01-03
+CAB-0016;Cabo de acelerador Rinaldi - Pop 110i;Cabos;Rinaldi;Honda Pop 110i;16,90;36,90;1;1;2024-03-13
+CAB-0017;Cabo de acelerador Controlflex - NXR 160 Bros;Cabos;Controlflex;Honda NXR 160 Bros;17,13;34,90;17;17;2022-10-10
+CAB-0018;Cabo de acelerador Rinaldi - NXR 160 Bros;Cabos;Rinaldi;Honda NXR 160 Bros;19,55;40,90;4;1;2024-03-11
+CAB-0019;Cabo de acelerador Controlflex - Factor 150;Cabos;Controlflex;Yamaha Factor 150;24,16;50,90;3;2;2024-03-30
+CAB-0020;Cabo de acelerador Rinaldi - Factor 150;Cabos;Rinaldi;Yamaha Factor 150;16,90;34,90;1;1;2020-06-30
+CAB-0021;Cabo de acelerador Controlflex - Fazer 250;Cabos;Controlflex;Yamaha Fazer 250;14,12;30,90;7;1;2020-12-02
+CAB-0022;Cabo de acelerador Rinaldi - Fazer 250;Cabos;Rinaldi;Yamaha Fazer 250;24,41;R$ 48,90;1;1;2023-09-27
+CAB-0023;Cabo de acelerador Controlflex - XRE 300;Cabos;Controlflex;Yamaha XRE 300;21,80;49,90;1;1;2020-09-16
+CAB-0024;Cabo de acelerador Rinaldi - XRE 300;Cabos;Rinaldi;Yamaha XRE 300;14,63;28,90;12;1;2024-06-27
+CAB-0025;Cabo de velocímetro Controlflex - CG 160;Cabos;Controlflex;Honda CG 160;14,68;29,90;4;2;2023-06-06
+CAB-0026;Cabo de velocímetro Rinaldi - CG 160;Cabos;Rinaldi;Honda CG 160;14,81;33,90;1;1;2021-05-10
+CAB-0027;Cabo de velocímetro Controlflex - Biz 125;Cabos;Controlflex;Honda Biz 125;14,96;29,90;1;1;2023-05-02
+CAB-0028;Cabo de velocímetro Rinaldi - Biz 125;Cabos;Rinaldi;Honda Biz 125;12,95;28,90;1;1;2021-03-27
+CAB-0029;Cabo de velocímetro Controlflex - Pop 110i;Cabos;Controlflex;Honda Pop 110i;19,02;43,90;12;1;2020-07-12
+CAB-0030;Cabo de velocímetro Rinaldi - Pop 110i;Cabos;Rinaldi;Honda Pop 110i;19,53;R$ 37,90;2;1;2024-07-02
+CAB-0031;Cabo de velocímetro Controlflex - NXR 160 Bros;Cabos;Controlflex;Honda NXR 160 Bros;13,04;27,90;12;1;2026-08-31
+CAB-0032;Cabo de velocímetro Rinaldi - NXR 160 Bros;Cabos;Rinaldi;Honda NXR 160 Bros;18,46;39,90;1;1;2020-03-16
+CAB-0033;Cabo de velocímetro Controlflex - Factor 150;Cabos;Controlflex;Yamaha Factor 150;11,65;23,90;1;1;2022-04-08
+CAB-0034;Cabo de velocímetro Rinaldi - Factor 150;Cabos;Rinaldi;Yamaha Factor 150;18,52;39,90;2;1;2022-05-03
+CAB-0035;Cabo de velocímetro Controlflex - Fazer 250;Cabos;Controlflex;Yamaha Fazer 250;12,96;26,90;5;1;2022-07-19
+CAB-0036;Cabo de velocímetro Rinaldi - Fazer 250;Cabos;Rinaldi;Yamaha Fazer 250;17,60;38,90;1;1;2022-09-11
+CAB-0037;Cabo de velocímetro Controlflex - XRE 300;Cabos;Controlflex;Yamaha XRE 300;19,42;R$ 37,90;1;1;2021-06-08
+CAB-0038;Cabo de velocímetro Rinaldi - XRE 300;Cabos;Rinaldi;Yamaha XRE 300;11,00;22,90;15;1;2021-12-23
+FIL-0001;Filtro de óleo Tecfil - CG 160;Filtros;Tecfil;Honda CG 160;12,69;0,00;27;8;2024-01-09
+FIL-0002;Filtro de óleo Fram - CG 160;Filtros;Fram;Honda CG 160;13,68;28,90;13;9;2021-09-30
+FIL-0003;Filtro de óleo Vedamotors - CG 160;Filtros;Vedamotors;Honda CG 160;23,12;44,90;12;4;2021-07-17
+FIL-0004;Filtro de óleo Tecfil - Biz 125;Filtros;Tecfil;Honda Biz 125;13,73;26,90;3;3;2024-04-08
+FIL-0005;Filtro de óleo Fram - Biz 125;Filtros;Fram;Honda Biz 125;24,10;51,90;2;1;2022-12-22
+FIL-0006;Filtro de óleo Vedamotors - Biz 125;Filtros;Vedamotors;Honda Biz 125;17,76;35,90;10;1;2020-12-10
+FIL-0007;Filtro de óleo Tecfil - Pop 110i;Filtros;Tecfil;Honda Pop 110i;18,05;35,90;0;2;2025-10-09
+FIL-0008;Filtro de óleo Fram - Pop 110i;Filtros;Fram;Honda Pop 110i;11,88;25,90;7;2;2024-02-27
+FIL-0009;Filtro de óleo Vedamotors - Pop 110i;Filtros;Vedamotors;Honda Pop 110i;24,30;45,90;5;1;2024-08-18
+FIL-0010;Filtro de óleo Tecfil - NXR 160 Bros;Filtros;Tecfil;Honda NXR 160 Bros;13,12;24,90;14;6;2021-12-20
+FIL-0011;Filtro de óleo Fram - NXR 160 Bros;Filtros;Fram;Honda NXR 160 Bros;11,78;25,90;4;3;2022-07-23
+FIL-0012;Filtro de óleo Vedamotors - NXR 160 Bros;Filtros;Vedamotors;Honda NXR 160 Bros;19,12;R$ 37,90;4;1;2025-11-23
+FIL-0013;Filtro de óleo Tecfil - Factor 150;Filtros;Tecfil;Yamaha Factor 150;17,98;33,90;2;2;2022-04-05
+FIL-0014;Filtro de óleo Fram - Factor 150;Filtros;Fram;Yamaha Factor 150;22,27;46,90;6;2;2020-03-31
+FIL-0015;Filtro de óleo Vedamotors - Factor 150;Filtros;Vedamotors;Yamaha Factor 150;12,29;R$ 26,90;18;4;2025-10-26
+FIL-0016;Filtro de óleo Tecfil - Fazer 250;Filtros;Tecfil;Yamaha Fazer 250;10,75;20,90;2;1;2022-08-18
+FIL-0017;Filtro de óleo Fram - Fazer 250;Filtros;Fram;Yamaha Fazer 250;19,34;R$ 40,90;2;2;2024-02-21
+FIL-0018;Filtro de óleo Vedamotors - Fazer 250;Filtros;Vedamotors;Yamaha Fazer 250;13,18;28,90;1;1;2025-01-21
+FIL-0019;Filtro de óleo Tecfil - XRE 300;Filtros;Tecfil;Yamaha XRE 300;19,59;35,90;1;1;2023-11-25
+FIL-0020;Filtro de óleo Fram - XRE 300;Filtros;Fram;Yamaha XRE 300;14,21;25,90;2;2;2022-05-29
+FIL-0021;Filtro de óleo Vedamotors - XRE 300;Filtros;Vedamotors;Yamaha XRE 300;11,94;22,90;1;1;2023-02-19
+FIL-0022;Filtro de ar Tecfil - CG 160;Filtros;Tecfil;Honda CG 160;24,82;53,90;2;2;2023-11-30
+FIL-0023;Filtro de ar Fram - CG 160;Filtros;Fram;Honda CG 160;33,15;65,90;4;2;2024-05-08
+FIL-0024;Filtro de ar Vedamotors - CG 160;Filtros;Vedamotors;Honda CG 160;29,99;59,90;11;3;2022-04-23
+FIL-0025;Filtro de ar Tecfil - Biz 125;Filtros;Tecfil;Honda Biz 125;23,57;44,90;7;3;2020-03-03
+FIL-0026;Filtro de ar Fram - Biz 125;Filtros;Fram;Honda Biz 125;36,15;R$ 65,90;1;1;2023-11-07
+FIL-0027;Filtro de ar Vedamotors - Biz 125;Filtros;Vedamotors;Honda Biz 125;37,31;78,90;3;1;2022-11-02
+FIL-0028;Filtro de ar Tecfil - Pop 110i;Filtros;Tecfil;Honda Pop 110i;28,29;58,90;6;2;2023-09-21
+FIL-0029;Filtro de ar Fram - Pop 110i;Filtros;Fram;Honda Pop 110i;38,69;75,90;8;2;2026-01-15
+FIL-0030;Filtro de ar Vedamotors - Pop 110i;Filtros;Vedamotors;Honda Pop 110i;25,08;50,90;14;1;2022-10-15
+FIL-0031;Filtro de ar Tecfil - NXR 160 Bros;Filtros;Tecfil;Honda NXR 160 Bros;27,72;59,90;6;3;2020-01-14
+FIL-0032;Filtro de ar Fram - NXR 160 Bros;Filtros;Fram;Honda NXR 160 Bros;31,18;60,90;6;1;2023-08-15
+FIL-0033;Filtro de ar Vedamotors - NXR 160 Bros;Filtros;Vedamotors;Honda NXR 160 Bros;26,00;0,00;1;1;2024-06-06
+FIL-0034;Filtro de ar Tecfil - Factor 150;Filtros;Tecfil;Yamaha Factor 150;31,69;65,90;7;2;2021-12-18
+FIL-0035;Filtro de ar Fram - Factor 150;Filtros;Fram;Yamaha Factor 150;15,49;29,90;6;2;2021-08-16
+FIL-0036;Filtro de ar Vedamotors - Factor 150;Filtros;Vedamotors;Yamaha Factor 150;34,45;73,90;1;1;2019-12-16
+FIL-0037;Filtro de ar Tecfil - Fazer 250;Filtros;Tecfil;Yamaha Fazer 250;31,70;58,90;2;1;2020-07-17
+FIL-0038;Filtro de ar Fram - Fazer 250;Filtros;Fram;Yamaha Fazer 250;18,47;35,90;15;1;2020-06-24
+FIL-0039;Filtro de ar Vedamotors - Fazer 250;Filtros;Vedamotors;Yamaha Fazer 250;37,76;71,90;0;1;2021-09-16
+FIL-0040;Filtro de ar Tecfil - XRE 300;Filtros;Tecfil;Yamaha XRE 300;32,53;70,90;3;1;2023-01-22
+FIL-0041;Filtro de ar Fram - XRE 300;Filtros;Fram;Yamaha XRE 300;21,38;43,90;12;1;2022-09-19
+FIL-0042;Filtro de ar Vedamotors - XRE 300;Filtros;Vedamotors;Yamaha XRE 300;39,40;77,90;3;1;2024-03-02
+FIL-0043;Retentor de bengala (par) Vedamotors - CG 160;Filtros;Vedamotors;Honda CG 160;25,58;46,90;2;1;2026-03-24
+FIL-0044;Retentor de bengala (par) Sabó - CG 160;Filtros;Sabó;Honda CG 160;40,26;73,90;3;2;2023-01-13
+FIL-0045;Retentor de bengala (par) Vedamotors - Biz 125;Filtros;Vedamotors;Honda Biz 125;46,35;83,90;5;2;2024-08-25
+FIL-0046;Retentor de bengala (par) Sabó - Biz 125;Filtros;Sabó;Honda Biz 125;37,25;70,90;1;1;2023-10-27
+FIL-0047;Retentor de bengala (par) Vedamotors - Pop 110i;Filtros;Vedamotors;Honda Pop 110i;31,11;61,90;2;1;2022-03-14
+FIL-0048;Retentor de bengala (par) Sabó - Pop 110i;Filtros;Sabó;Honda Pop 110i;46,08;91,90;2;1;2023-01-05
+FIL-0049;Retentor de bengala (par) Vedamotors - NXR 160 Bros;Filtros;Vedamotors;Honda NXR 160 Bros;44,12;85,90;12;3;2019-12-11
+FIL-0050;Retentor de bengala (par) Sabó - NXR 160 Bros;Filtros;Sabó;Honda NXR 160 Bros;36,41;64,90;15;1;2026-08-09
+FIL-0051;Retentor de bengala (par) Vedamotors - Factor 150;Filtros;Vedamotors;Yamaha Factor 150;32,23;57,90;1;1;2026-08-11
+FIL-0052;Retentor de bengala (par) Sabó - Factor 150;Filtros;Sabó;Yamaha Factor 150;35,25;62,90;1;1;2025-10-22
+FIL-0053;Retentor de bengala (par) Vedamotors - Fazer 250;Filtros;Vedamotors;Yamaha Fazer 250;46,51;81,90;1;1;2024-08-17
+FIL-0054;Retentor de bengala (par) Sabó - Fazer 250;Filtros;Sabó;Yamaha Fazer 250;33,40;64,90;1;1;2026-08-30
+FIL-0055;Retentor de bengala (par) Vedamotors - XRE 300;Filtros;Vedamotors;Yamaha XRE 300;28,46;54,90;1;1;2025-11-15
+FIL-0056;Retentor de bengala (par) Sabó - XRE 300;Filtros;Sabó;Yamaha XRE 300;34,75;69,90;1;1;2022-02-23
+ACE-0001;Capacete fechado Pro Tork;Acessórios;Pro Tork;Universal;170,81;285,90;14;16;2023-05-06
+ACE-0002;Capacete fechado LS2;Acessórios;LS2;Universal;427,86;809,90;3;1;2022-04-05
+ACE-0003;Capacete fechado Bieffe;Acessórios;Bieffe;Universal;165,54;R$ 300,90;3;1;2020-05-22
+ACE-0004;Capacete fechado Norisk;Acessórios;Norisk;Universal;412,00;727,90;1;1;2022-12-01
+ACE-0005;Capacete aberto Pro Tork;Acessórios;Pro Tork;Universal;181,58;285,90;1;1;2024-08-09
+ACE-0006;Capacete aberto Bieffe;Acessórios;Bieffe;Universal;150,74;256,90;1;2;2023-04-19
+ACE-0007;Baú 41L Pro Tork;Acessórios;Pro Tork;Universal;280,54;504,90;3;2;2020-03-24
+ACE-0008;Baú 41L Givi;Acessórios;Givi;Universal;169,04;290,90;3;1;2021-01-30
+ACE-0009;Luva motociclista X11;Acessórios;X11;Universal;45,92;93,90;0;6;2020-09-16
+ACE-0010;Luva motociclista Pro Tork;Acessórios;Pro Tork;Universal;32,57;69,90;11;1;2020-05-06
+ACE-0011;Capa de chuva Pantaneiro;Acessórios;Pantaneiro;Universal;79,37;R$ 169,90;6;2;2024-04-01
+ACE-0012;Capa de chuva Alba;Acessórios;Alba;Universal;60,83;117,90;8;12;2023-06-09
+ACE-0013;Suporte de celular Multilaser;Acessórios;Multilaser;Universal;44,04;98,90;18;4;2024-07-13
+ACE-0014;Suporte de celular Atrio;Acessórios;Atrio;Universal;24,32;59,90;54;12;2024-10-20
+ACE-0015;Manopla (par) Pro Tork;Acessórios;Pro Tork;Universal;12,30;27,90;3;2;2020-09-21
+ACE-0016;Manopla (par) Rinaldi;Acessórios;Rinaldi;Universal;10,79;21,90;7;2;2020-03-22
+ACE-0017;Antena corta-pipa Genérica;Acessórios;Genérica;Universal;13,42;33,90;22;5;2024-01-23
+ACE-0018;Retrovisor (par) Vision - CG 160;Acessórios;Vision;Honda CG 160;53,81;105,90;3;1;2021-04-11
+ACE-0019;Retrovisor (par) GVS - CG 160;Acessórios;GVS;Honda CG 160;55,13;122,90;1;1;2022-03-13
+ACE-0020;Retrovisor (par) Vision - Biz 125;Acessórios;Vision;Honda Biz 125;53,67;103,90;1;1;2026-01-30
+ACE-0021;Retrovisor (par) GVS - Biz 125;Acessórios;GVS;Honda Biz 125;50,82;R$ 101,90;1;1;2020-04-29
+ACE-0022;Retrovisor (par) Vision - Pop 110i;Acessórios;Vision;Honda Pop 110i;42,65;R$ 93,90;20;5;2020-07-18
+ACE-0023;Retrovisor (par) GVS - Pop 110i;Acessórios;GVS;Honda Pop 110i;37,88;75,90;3;1;2022-01-14
+ACE-0024;Retrovisor (par) Vision - NXR 160 Bros;Acessórios;Vision;Honda NXR 160 Bros;51,30;99,90;2;2;2021-05-07
+ACE-0025;Retrovisor (par) GVS - NXR 160 Bros;Acessórios;GVS;Honda NXR 160 Bros;31,17;61,90;4;1;2022-11-15
+ACE-0026;Retrovisor (par) Vision - Factor 150;Acessórios;Vision;Yamaha Factor 150;38,95;89,90;1;1;2020-12-05
+ACE-0027;Retrovisor (par) GVS - Factor 150;Acessórios;GVS;Yamaha Factor 150;47,87;99,90;1;1;2022-08-22
+ACE-0028;Retrovisor (par) Vision - Fazer 250;Acessórios;Vision;Yamaha Fazer 250;55,63;127,90;7;1;2019-12-19
+ACE-0029;Retrovisor (par) GVS - Fazer 250;Acessórios;GVS;Yamaha Fazer 250;31,73;R$ 63,90;5;1;2024-07-07
+ACE-0030;Retrovisor (par) Vision - XRE 300;Acessórios;Vision;Yamaha XRE 300;35,12;77,90;1;1;2023-12-24
+ACE-0031;Retrovisor (par) GVS - XRE 300;Acessórios;GVS;Yamaha XRE 300;44,28;98,90;2;2;2020-01-25

@@ -1,0 +1,33 @@
+[project]
+name = "motopecas-analytics"
+version = "0.1.0"
+description = "Demonstração de análise de dados para uma loja fictícia de motopeças com oficina."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "duckdb>=2.0.1",
+    "faker>=40.63.0",
+    "numpy>=2.5.5",
+    "pandas>=3.1.1",
+    "plotly>=7.2.0",
+    "requests>=2.34.2",
+    "streamlit>=1.67.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+    "ruff>=0.17.6",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+# E/F: erros básicos, I: ordem dos imports, UP: sintaxe moderna, B: bugs comuns, SIM: simplificações
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

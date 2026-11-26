@@ -1,0 +1,4 @@
+# Código e textos sempre com LF (padrão Linux), independente do sistema de quem edita
+* text=auto eol=lf
+# CSVs brutos: o git não mexe; o gerador grava sempre com CRLF, como um ERP Windows exporta
+*.csv -text

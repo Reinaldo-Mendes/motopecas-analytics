@@ -1,0 +1,17 @@
+# Ambiente Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# IDE
+.idea/
+
+# Banco gerado pelo pipeline (os CSVs de data/raw/ SÃO versionados, de propósito)
+data/*.duckdb
+data/*.duckdb.wal
+
+# Segredos
+.env
+.streamlit/secrets.toml

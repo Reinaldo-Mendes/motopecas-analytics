@@ -904,11 +904,22 @@ def montar_tabelas(sim: Simulador) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataF
         .to_numpy()
     )
     dias = dias + longos * rng.integers(0, 2, size=len(ordens))
+    # O mecânico contratado por último ainda atrasa metade dos serviços (fora a troca de óleo)
+    novato = (ordens["mecanico"] == sim.mecanicos[-1][0]).to_numpy()
+    nao_oleo = (ordens["servico"] != "Troca de óleo").to_numpy()
+    dias = dias + (novato & nao_oleo & (ordens["chave"].to_numpy() % 2 == 0))
     conclusao = [
         proximo_dia_util(a + timedelta(days=int(x)))
         for a, x in zip(ordens["data_abertura"], dias, strict=True)
     ]
-    status = np.where(rng.random(len(ordens)) < 0.03, "Cancelada", "Concluída").astype(object)
+    # Cliente desiste mais quando o orçamento é alto: ~1% numa troca de óleo, até ~13% acima
+    # de R$ 500 (pneu, relação). É o padrão que o diagnóstico de cancelamentos deve achar.
+    itens = pd.DataFrame(sim.itens_ordem)
+    pecas = (itens["quantidade"] * itens["preco_unitario"]).groupby(itens["chave"]).sum()
+    orcamento = ordens["valor_mao_obra"].to_numpy() + ordens["chave"].map(pecas).fillna(0)
+    chance_cancelar = 0.01 + 0.12 * np.clip((orcamento.to_numpy() - 150) / 350, 0, 1)
+    status = np.where(rng.random(len(ordens)) < chance_cancelar, "Cancelada", "Concluída")
+    status = status.astype(object)
     em_aberto = np.array([c > sim.fim for c in conclusao])
     status[em_aberto] = "Em andamento"
     ordens["status"] = status

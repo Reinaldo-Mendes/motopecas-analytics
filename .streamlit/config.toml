@@ -1,6 +1,30 @@
+# Tema do dashboard. Claro/escuro segue a preferência do aparelho (e o menu do Streamlit).
+# As cores das séries dos gráficos foram validadas para daltonismo e contraste nas duas
+# superfícies abaixo (ver app/graficos.py).
+
 [theme]
-# Azul do slot 1 da paleta validada; claro/escuro segue a preferência do sistema
 primaryColor = "#257de0"
+font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+headingFont = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+baseFontSize = 15
+baseRadius = "0.75rem"
+buttonRadius = "full"
+showWidgetBorder = true
+headingFontWeights = [700, 650, 600, 600, 600, 600]
+metricValueFontWeight = 650
+chartCategoricalColors = ["#338ced", "#e76624", "#00a888"]
+
+[theme.light]
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f3f5f8"
+textColor = "#1a1f2b"
+borderColor = "#e2e6ec"
+
+[theme.dark]
+backgroundColor = "#0f1218"
+secondaryBackgroundColor = "#191e27"
+textColor = "#e7e9ee"
+borderColor = "#2b313c"
 
 [server]
 headless = true

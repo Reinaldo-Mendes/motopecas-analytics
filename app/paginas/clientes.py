@@ -1,9 +1,10 @@
-"""Clientes: perfil descoberto pela frequência, quem sumiu e quem mais compra."""
+"""Clientes: troca de óleo prevista, perfil descoberto pela frequência, quem sumiu e quem compra."""
 
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
+from componentes import cabecalho, secao
 from dados import consultar
 from formatacao import (
     formatar_data,
@@ -15,12 +16,10 @@ from formatacao import (
 )
 from graficos import STATUS, aplicar_layout, eixo_de_categorias, mostrar
 
-st.set_page_config(page_title="Clientes · Motopeças", page_icon="👥", layout="centered")
-st.title("Clientes")
-st.caption(
-    "O sistema da loja não registra se o cliente é motoboy. O perfil abaixo foi **descoberto pela "
-    "frequência de visitas**: quem vem a cada ~30 dias trocar óleo é motoboy; empresa ou cliente "
-    "com 3+ motos é frota."
+cabecalho(
+    "Clientes",
+    "O sistema da loja não registra se o cliente é motoboy: o perfil foi descoberto pela "
+    "frequência de visitas (a cada ~30 dias = motoboy; empresa ou 3+ motos = frota).",
 )
 
 clientes = consultar("SELECT * FROM analise.clientes_perfil WHERE perfil <> 'Sem compras'")
@@ -54,8 +53,68 @@ col2.metric(
     help="Quanto os clientes que sumiram gastaram nos últimos 12 meses.",
 )
 
+# ---- Troca de óleo prevista ----
+secao(
+    "Troca de óleo prevista para esta semana",
+    "Pelo ritmo de cada cliente (mediana entre as trocas, com 3+ trocas no histórico). "
+    "Mandar uma mensagem antes que ele troque o óleo em outro lugar.",
+)
+oleo = consultar("""
+    SELECT * FROM analise.clientes_troca_oleo
+    WHERE situacao IN ('Esta semana', 'Atrasada')
+    ORDER BY gasto_12m DESC
+""")
+oleo = oleo if perfil == "Todos" else oleo[oleo.perfil == perfil]
+ticket_troca = consultar(
+    "SELECT avg(valor_total) AS v FROM analise.ordens_concluidas WHERE servico = 'Troca de óleo'"
+).v.iloc[0]
+col1, col2 = st.columns(2)
+col1.metric(
+    "Clientes para chamar",
+    formatar_numero(len(oleo)),
+    f"{(oleo.situacao == 'Atrasada').sum()} já atrasados",
+    delta_color="off",
+    delta_arrow="off",
+    border=True,
+)
+col2.metric(
+    "Receita em jogo",
+    formatar_moeda_curta(len(oleo) * ticket_troca),
+    border=True,
+    help="Clientes da lista x ticket médio de uma OS de troca de óleo.",
+)
+if oleo.empty:
+    st.success("Ninguém com troca prevista neste perfil.")
+else:
+    st.dataframe(
+        oleo.assign(
+            Cliente=oleo.nome,
+            Telefone=oleo.telefone.map(formatar_telefone),
+            Perfil=oleo.perfil,
+            Moto=oleo.moto_principal.fillna("—"),
+            Situação=oleo.situacao,
+            **{
+                "Última troca": oleo.ultima_troca.map(formatar_data),
+                "Previsão": oleo.proxima_troca.map(formatar_data),
+                "Troca a cada": oleo.intervalo_dias.map(lambda d: f"{d} dias"),
+            },
+        )[
+            [
+                "Cliente",
+                "Telefone",
+                "Situação",
+                "Previsão",
+                "Última troca",
+                "Troca a cada",
+                "Perfil",
+                "Moto",
+            ]
+        ],
+        hide_index=True,
+    )
+
 # ---- Perfil x status ----
-st.subheader("Status dos clientes em cada perfil")
+secao("Status dos clientes em cada perfil")
 contagem = (
     clientes.groupby(["perfil", "status"])
     .size()
@@ -93,8 +152,10 @@ st.caption(
 )
 
 # ---- Lista de retorno ----
-st.subheader("Para ligar esta semana")
-st.write("Clientes que pararam de vir no último ano, dos que mais gastavam para os que menos.")
+secao(
+    "Para ligar: clientes que começaram a sumir",
+    "Pararam de vir no último ano, dos que mais gastavam para os que menos.",
+)
 lista = sumidos.sort_values("gasto_12m", ascending=False)
 if lista.empty:
     st.success("Nenhum cliente sumido neste perfil.")
@@ -116,7 +177,7 @@ else:
     st.caption("Nomes e telefones fictícios.")
 
 # ---- Melhores clientes ----
-st.subheader("Quem mais comprou nos últimos 12 meses")
+secao("Quem mais comprou nos últimos 12 meses")
 top = filtrados.sort_values("gasto_12m", ascending=False).head(10)
 st.dataframe(
     top.assign(

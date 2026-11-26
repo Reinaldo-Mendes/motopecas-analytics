@@ -98,3 +98,63 @@ FROM (
         END AS intervalo_habitual
     FROM perfil
 );
+
+
+-- Troca de óleo prevista por cliente: pelo ritmo de cada um, quando ele deve voltar.
+-- Troca = OS de troca de óleo ou revisão (que inclui óleo) ou compra de óleo no balcão.
+-- Precisa de 3+ trocas para o ritmo ser confiável; o intervalo é a MEDIANA entre trocas
+-- (uma viagem ou um mês sem vir não distorce, como distorceria a média).
+-- Situação na data de referência:
+--   Esta semana    = a próxima troca cai nos próximos 7 dias;
+--   Atrasada       = passou da data há até 15 dias (ainda dá tempo de chamar);
+--   Muito atrasada = passou há mais de 15 dias;  Em dia = falta mais de uma semana.
+CREATE OR REPLACE VIEW analise.clientes_troca_oleo AS
+WITH trocas AS (
+    SELECT id_cliente, data_abertura AS data
+    FROM analise.ordens_concluidas
+    WHERE servico IN ('Troca de óleo', 'Revisão geral') AND id_cliente IS NOT NULL
+    UNION  -- sem ALL: duas trocas no mesmo dia contam como uma
+    SELECT id_cliente, data
+    FROM analise.itens_vendidos
+    WHERE origem = 'Balcão' AND id_cliente IS NOT NULL AND descricao ILIKE 'Óleo %'
+),
+intervalos AS (
+    SELECT id_cliente, data, data - lag(data) OVER (PARTITION BY id_cliente ORDER BY data) AS dias
+    FROM trocas
+),
+ritmo AS (
+    SELECT
+        id_cliente,
+        count(*) AS qtd_trocas,
+        max(data) AS ultima_troca,
+        round(median(dias))::INTEGER AS intervalo_dias
+    FROM intervalos
+    GROUP BY id_cliente
+    HAVING count(*) >= 3
+),
+previsao AS (
+    SELECT
+        p.id_cliente,
+        p.nome,
+        p.telefone,
+        p.perfil,
+        p.moto_principal,
+        p.gasto_12m,
+        t.qtd_trocas,
+        t.ultima_troca,
+        t.intervalo_dias,
+        t.ultima_troca + t.intervalo_dias AS proxima_troca,
+        (t.ultima_troca + t.intervalo_dias) - r.data_referencia AS dias_para_troca
+    FROM ritmo AS t
+    JOIN analise.clientes_perfil AS p USING (id_cliente)
+    CROSS JOIN analise.referencia AS r
+)
+SELECT
+    *,
+    CASE
+        WHEN dias_para_troca > 7 THEN 'Em dia'
+        WHEN dias_para_troca >= 0 THEN 'Esta semana'
+        WHEN dias_para_troca >= -15 THEN 'Atrasada'
+        ELSE 'Muito atrasada'
+    END AS situacao
+FROM previsao;

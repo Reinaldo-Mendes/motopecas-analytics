@@ -19,7 +19,7 @@ import streamlit as st
 SERIES = ["#338ced", "#e76624", "#00a888"]  # ordem fixa: nunca reordenar nem gerar cores novas
 NEUTRO = "#8c8c8c"  # para o "resto" quando um destaque é colorido
 STATUS = {"Ativo": "#0aac23", "Em risco": "#fbb315", "Inativo": "#dc3c3d"}
-FONTE = 'system-ui, -apple-system, "Segoe UI", sans-serif'
+FONTE = 'Inter, system-ui, -apple-system, "Segoe UI", sans-serif'  # Inter vem do tema
 CONFIG_PLOTLY = {"displayModeBar": False, "scrollZoom": False}
 
 
@@ -127,6 +127,39 @@ def linha(
         )
     fig.update_yaxes(tickprefix=prefixo, ticksuffix=sufixo, tickformat=formato_y)
     return aplicar_layout(fig, legenda=False)
+
+
+def barras_agrupadas(
+    categorias: list[str],
+    series: dict[str, list[float]],
+    formato: str = "%{x:.0f}%",
+    sufixo_texto: str = "%",
+) -> go.Figure:
+    """Barras horizontais lado a lado para comparar 2 ou 3 medidas na mesma escala.
+
+    Cada barra leva o valor na ponta (rótulo direto) e a legenda fica no topo: a cor nunca é
+    a única forma de saber qual série é qual.
+    """
+    fig = go.Figure()
+    for (nome, valores), cor in zip(series.items(), SERIES, strict=False):
+        fig.add_bar(
+            y=categorias,
+            x=valores,
+            orientation="h",
+            name=nome,
+            marker={"color": cor},
+            text=[f"{v:.0f}{sufixo_texto}" for v in valores],
+            textposition="outside",
+            cliponaxis=False,
+            hovertemplate=f"<b>%{{y}}</b><br>{nome}: {formato}<extra></extra>",
+        )
+    fig.update_xaxes(showticklabels=False, showgrid=False, showline=False)
+    altura = max(260, 34 * len(series) * len(categorias) + 60)
+    fig = aplicar_layout(fig, altura=altura)
+    fig.update_layout(
+        barmode="group", bargap=0.25, bargroupgap=0.1, margin={"l": 8, "r": 48, "t": 8, "b": 8}
+    )
+    return eixo_de_categorias(fig)
 
 
 def barras_horizontais(

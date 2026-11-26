@@ -6,7 +6,13 @@ from datetime import date
 import pandas as pd
 import pytest
 
-from diagnostico import principais_achados, resumo_estoque, resumo_meses
+from diagnostico import (
+    principais_achados,
+    resumo_estoque,
+    resumo_meses,
+    resumo_troca_oleo,
+    troca_oleo_semana,
+)
 from formatacao import (
     formatar_data,
     formatar_mes,
@@ -60,8 +66,23 @@ def test_resumo_estoque_consistente(con):
     assert estoque["qtd_em_falta_a"] <= estoque["qtd_em_falta"]
 
 
-def test_achados_sao_frases_formatadas(con):
+def test_achados_estruturados_e_ordenados_pelo_impacto(con):
     achados = principais_achados(con)
-    assert len(achados) >= 5
-    assert achados[0].startswith("R$ ")
-    assert not any(re.search(r"\d\.\d mil", a) for a in achados)  # nada de '1.0 mil'
+    assert len(achados) >= 8
+    assert {a.tipo for a in achados} <= {"alerta", "oportunidade", "info"}
+    assert {a.pagina for a in achados} <= {"estoque", "vendas", "oficina", "clientes"}
+    com_impacto = [a for a in achados if a.tipo != "info"]
+    assert achados[: len(com_impacto)] == com_impacto  # contexto sempre no fim
+    impactos = [a.impacto for a in com_impacto]
+    assert impactos == sorted(impactos, reverse=True)
+    textos = [f"{a.valor} {a.texto}" for a in achados]
+    assert not any(re.search(r"\d\.\d mil", t) for t in textos)  # nada de '1.0 mil'
+    assert not any("None" in t or "nan" in t for t in textos)
+
+
+def test_troca_de_oleo_da_semana(con):
+    lista = troca_oleo_semana(con, limite=None)
+    resumo = resumo_troca_oleo(con)
+    assert len(lista) == resumo["qtd_esta_semana"] + resumo["qtd_atrasada"]
+    assert all(-15 <= c["dias_para_troca"] <= 7 for c in lista)
+    assert len(troca_oleo_semana(con, limite=3)) == 3

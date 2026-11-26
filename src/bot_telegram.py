@@ -20,7 +20,14 @@ from html import escape
 import duckdb
 import requests
 
-from diagnostico import clientes_para_ligar, itens_em_falta, resumo_estoque, resumo_semana
+from diagnostico import (
+    clientes_para_ligar,
+    itens_em_falta,
+    resumo_estoque,
+    resumo_semana,
+    resumo_troca_oleo,
+    troca_oleo_semana,
+)
 from formatacao import (
     formatar_moeda_curta,
     formatar_numero,
@@ -41,6 +48,15 @@ def comparar(atual: float, anterior: float) -> str:
     return f" ({seta} {formatar_pct(abs(variacao))} vs semana anterior)"
 
 
+def prazo_troca(dias: int) -> str:
+    """-3 -> 'atrasada há 3 dias'; 0 -> 'vence hoje'; 5 -> 'vence em 5 dias'."""
+    if dias < 0:
+        return f"atrasada há {-dias} {'dia' if dias == -1 else 'dias'}"
+    if dias == 0:
+        return "vence hoje"
+    return "vence amanhã" if dias == 1 else f"vence em {dias} dias"
+
+
 def montar_mensagem(con: duckdb.DuckDBPyConnection, url_dashboard: str | None = None) -> str:
     """Texto do resumo em HTML simples (o Telegram aceita <b>, <i> e <a>).
 
@@ -58,6 +74,17 @@ def montar_mensagem(con: duckdb.DuckDBPyConnection, url_dashboard: str | None = 
         f"<b>OS concluídas:</b> {formatar_numero(semana['qtd_os'])}"
         + comparar(semana["qtd_os"], semana["qtd_os_anterior"]),
     ]
+
+    oleo = troca_oleo_semana(con)
+    if oleo:
+        total = resumo_troca_oleo(con)
+        qtd = total["qtd_esta_semana"] + total["qtd_atrasada"]
+        linhas += ["", f"<b>Troca de óleo para chamar</b> ({qtd} clientes; os 5 que mais gastam)"]
+        linhas += [
+            f"• {escape(c['nome'])} — {formatar_telefone(c['telefone'])} — "
+            + prazo_troca(c["dias_para_troca"])
+            for c in oleo
+        ]
 
     falta = itens_em_falta(con)
     if falta:

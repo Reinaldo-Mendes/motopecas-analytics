@@ -60,11 +60,16 @@ Os arquivos SQL rodam em ordem numérica:
 - `03_base_analitica.sql`: une balcão e oficina numa visão única de faturamento (OS canceladas
   ficam de fora) e gera o relatório de qualidade dos dados.
 - `04_metricas_estoque.sql`: curva ABC, dias sem venda, cobertura e situação de cada SKU
-  (sem giro, em falta, repor).
+  (sem giro, em falta, repor) e estoque por modelo de moto x motos atendidas na oficina.
 - `05_metricas_vendas.sql`: faturamento e margem mensais, margem por categoria.
-- `06_metricas_oficina.sql`: produção por mecânico e desempenho por tipo de serviço.
+- `06_metricas_oficina.sql`: produção e prazo por mecânico, desempenho por serviço,
+  orçamentos recusados por faixa de valor e venda casada (peça que combina com cada serviço).
 - `07_metricas_clientes.sql`: **perfil descoberto pelo comportamento** (o ERP não sabe quem é
-  motoboy) e status ativo / em risco / inativo. Acerta 96,6% dos perfis reais.
+  motoboy) e status ativo / em risco / inativo. Acerta 96,6% dos perfis reais. Também prevê a
+  próxima troca de óleo de cada cliente pelo ritmo dele (mediana entre as trocas).
+- `08_metricas_comercial.sql`: descontos do balcão (quanto, para quem e efeito no ticket) e
+  custo estimado de cada forma de pagamento. As taxas de maquininha e boleto são
+  **premissas** declaradas na view `analise.premissas_pagamento`, fáceis de trocar.
 
 As métricas usam como "hoje" a última data com movimento nos dados, não o relógio do
 computador, então os números não mudam conforme o dia em que o dashboard é aberto.
@@ -77,18 +82,21 @@ Testes em duas frentes:
 
 ## Dashboard (`app/`)
 
-Pensado para o dono da loja abrir no celular: uma coluna, KPIs (Key Performance Indicators,
-indicadores-chave) no topo, um filtro por página e uma frase explicando cada gráfico.
+Pensado para o dono da loja abrir no celular: KPIs (Key Performance Indicators,
+indicadores-chave) com minigráfico de tendência no topo, um filtro por página e uma frase
+explicando cada gráfico. `app/Home.py` monta o menu (`st.navigation`) e as páginas ficam em
+`app/paginas/`; o tema (fonte Inter, cantos arredondados, claro e escuro) está em
+`.streamlit/config.toml`.
 
 | Página | O que responde |
 |---|---|
-| Visão geral | Como foi o último mês e os principais achados em linguagem simples |
-| Estoque | Quanto dinheiro está parado, o que está em falta e o que comprar primeiro (curva ABC) |
-| Vendas e Margem | Evolução do faturamento, margem por categoria e efeito da chuva nos pneus |
-| Oficina | Volume de OS, produção por mecânico e quais serviços trazem mais receita |
-| Clientes | Perfil descoberto pela frequência e a lista de quem sumiu, para ligar |
+| Visão geral | Como foi o último mês, o que fazer esta semana e os achados em cartões, do maior impacto em R$ para o menor |
+| Estoque | Dinheiro parado, itens em falta, o que comprar, curva ABC e estoque x motos atendidas |
+| Vendas e margem | Faturamento, margem, descontos sem critério, custo das formas de pagamento e chuva x pneus |
+| Oficina | Volume de OS, orçamentos recusados, produção e prazo por mecânico, serviços e venda casada |
+| Clientes | Troca de óleo prevista para a semana, perfil descoberto pela frequência e quem sumiu |
 
-Os textos dos achados vêm de `src/diagnostico.py`, que o bot do Telegram também vai usar.
+Os achados vêm de `src/diagnostico.py` (o mesmo que o bot do Telegram usa).
 As cores dos gráficos foram validadas para daltonismo e contraste nos temas claro e escuro, e
 todo gráfico tem a mesma informação em tabela logo abaixo.
 
@@ -98,7 +106,8 @@ dos CSVs versionados.
 ## Bot do Telegram (`src/bot_telegram.py`)
 
 Toda segunda-feira às 8h (horário de Brasília), o GitHub Actions monta o banco a partir dos CSVs
-e envia ao Telegram um resumo da semana: faturamento e OS contra a semana anterior, itens
+e envia ao Telegram um resumo da semana: faturamento e OS contra a semana anterior, clientes
+com troca de óleo prevista ou atrasada (para chamar antes que troquem em outro lugar), itens
 campeões em falta, clientes que começaram a sumir (com telefone, para ligar) e o estoque parado.
 
 Para ativar no seu repositório:

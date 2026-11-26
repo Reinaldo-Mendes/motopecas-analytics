@@ -1,13 +1,21 @@
-"""Vendas e margem: evolução mensal, margem por categoria e sazonalidade."""
+"""Vendas e margem: evolução mensal, margem, descontos, formas de pagamento e sazonalidade."""
 
 import streamlit as st
 
-from dados import consultar
-from formatacao import MESES_ABREV, formatar_mes, formatar_moeda, formatar_moeda_curta, formatar_pct
+from componentes import cabecalho, secao
+from dados import calcular, consultar
+from diagnostico import resumo_descontos, resumo_recebimentos
+from formatacao import (
+    MESES_ABREV,
+    formatar_mes,
+    formatar_moeda,
+    formatar_moeda_curta,
+    formatar_numero,
+    formatar_pct,
+)
 from graficos import NEUTRO, SERIES, barras_empilhadas, barras_horizontais, linha, mostrar
 
-st.set_page_config(page_title="Vendas e Margem · Motopeças", page_icon="💰", layout="centered")
-st.title("Vendas e margem")
+cabecalho("Vendas e margem", "Quanto entra, quanto sobra e o que come a margem no caminho.")
 
 periodo = (
     st.segmented_control(
@@ -67,7 +75,7 @@ col2.metric(
 )
 
 # ---- Evolução ----
-st.subheader("Faturamento por mês")
+secao("Faturamento por mês", "Barras claras = mês incompleto.")
 rotulos = [formatar_mes(m) for m in fat.mes]
 mostrar(
     barras_empilhadas(
@@ -85,9 +93,8 @@ mostrar(
         **{"Lucro bruto": fat.lucro_bruto.map(formatar_moeda)},
     )[["Mês", "Faturamento", "Lucro bruto"]],
 )
-st.caption("Barras claras = mês incompleto.")
 
-st.subheader("Margem das peças por mês")
+secao("Margem das peças por mês")
 completos = fat[fat.mes_completo]
 margens = completos.margem_pecas_pct * 100
 fig = linha(
@@ -109,7 +116,7 @@ mostrar(
 )
 
 # ---- Margem por categoria ----
-st.subheader("Margem por categoria")
+secao("Margem por categoria")
 categorias = itens.groupby("categoria", as_index=False).agg(
     receita=("receita", "sum"), custo=("custo_total", "sum")
 )
@@ -138,8 +145,120 @@ st.caption(
     "mexe mais no lucro do que qualquer outra."
 )
 
+# ---- Descontos (sempre 12 meses) ----
+secao(
+    "Descontos no balcão",
+    "Últimos 12 meses. Na oficina o sistema não registra desconto, por isso ela fica de fora.",
+)
+desconto = calcular("resumo_descontos", resumo_descontos)
+col1, col2 = st.columns(2)
+col1.metric(
+    "Desconto dado",
+    formatar_moeda_curta(desconto["valor_desconto"]),
+    border=True,
+    help="Diferença entre o preço de tabela e o preço cobrado, somada em 12 meses.",
+)
+col2.metric(
+    "Pedidos com desconto",
+    formatar_pct(desconto["pedidos_com_desconto_pct"], 0),
+    border=True,
+)
+por_perfil = consultar("SELECT * FROM analise.descontos_por_perfil ORDER BY perfil")
+mostrar(
+    barras_horizontais(
+        por_perfil.perfil.tolist(),
+        (por_perfil.pedidos_com_desconto_pct * 100).tolist(),
+        "Pedidos com desconto",
+        formato="%{x:.0f}%",
+        textos=[formatar_pct(v, 0) for v in por_perfil.pedidos_com_desconto_pct],
+    ),
+    por_perfil.assign(
+        Perfil=por_perfil.perfil,
+        Pedidos=por_perfil.qtd_pedidos.map(formatar_numero),
+        **{
+            "Com desconto": por_perfil.pedidos_com_desconto_pct.map(formatar_pct),
+            "Desconto dado": por_perfil.valor_desconto.map(formatar_moeda),
+            "Ticket com desconto": por_perfil.ticket_com_desconto.map(formatar_moeda),
+            "Ticket sem desconto": por_perfil.ticket_sem_desconto.map(formatar_moeda),
+        },
+    )[
+        [
+            "Perfil",
+            "Pedidos",
+            "Com desconto",
+            "Desconto dado",
+            "Ticket com desconto",
+            "Ticket sem desconto",
+        ]
+    ],
+)
+st.caption(
+    "A mesma fatia de pedidos recebe desconto em todo tipo de cliente, e o pedido com desconto "
+    f"não é maior ({formatar_moeda(desconto['ticket_com_desconto'])} contra "
+    f"{formatar_moeda(desconto['ticket_sem_desconto'])}). Ou seja: o desconto não segue critério "
+    "e não está comprando venda maior. Uma regra simples (só no PIX, ou só acima de um valor) "
+    "devolve parte desse dinheiro."
+)
+
+# ---- Formas de pagamento (sempre 12 meses) ----
+secao(
+    "Quanto custa receber",
+    "Últimos 12 meses, balcão + oficina. As taxas são estimativas: troque pelas do contrato.",
+)
+recebimentos = consultar("SELECT * FROM analise.recebimentos")
+pagamento = calcular("resumo_recebimentos", resumo_recebimentos)
+col1, col2 = st.columns(2)
+col1.metric(
+    "Custo estimado das taxas",
+    formatar_moeda_curta(pagamento["custo_total"]),
+    border=True,
+    help="Maquininha (débito e crédito) e tarifa de boleto, pelas premissas da tabela.",
+)
+col2.metric(
+    "Só o cartão de crédito",
+    formatar_moeda_curta(pagamento["custo_credito"]),
+    f"{formatar_pct(pagamento['participacao_credito'], 0)} do faturamento",
+    delta_color="off",
+    delta_arrow="off",
+    border=True,
+)
+mostrar(
+    barras_horizontais(
+        recebimentos.forma_pagamento.tolist(),
+        (recebimentos.participacao * 100).tolist(),
+        "Participação no faturamento",
+        formato="%{x:.0f}%",
+        textos=[
+            f"{formatar_pct(p, 0)} · taxa {formatar_moeda_curta(c)}"
+            for p, c in zip(recebimentos.participacao, recebimentos.custo_estimado, strict=True)
+        ],
+    ),
+    recebimentos.assign(
+        Forma=recebimentos.forma_pagamento,
+        Documentos=recebimentos.qtd_documentos.map(formatar_numero),
+        Faturamento=recebimentos.faturamento.map(formatar_moeda),
+        **{
+            "% do faturamento": recebimentos.participacao.map(formatar_pct),
+            "Taxa (premissa)": [
+                formatar_moeda(f) + " por boleto" if f else formatar_pct(p)
+                for p, f in zip(recebimentos.taxa_pct, recebimentos.taxa_fixa, strict=True)
+            ],
+            "Custo estimado": recebimentos.custo_estimado.map(formatar_moeda),
+        },
+    )[
+        [
+            "Forma",
+            "Documentos",
+            "Faturamento",
+            "% do faturamento",
+            "Taxa (premissa)",
+            "Custo estimado",
+        ]
+    ],
+)
+
 # ---- Sazonalidade ----
-st.subheader("Pneus: efeito da época de chuva")
+secao("Pneus: efeito da época de chuva")
 pneus = consultar("""
     SELECT month(data) AS mes, sum(receita) / count(DISTINCT date_trunc('month', data)) AS media
     FROM analise.itens_vendidos

@@ -5,7 +5,7 @@ from types import SimpleNamespace
 import pytest
 
 import bot_telegram
-from bot_telegram import LIMITE_TELEGRAM, comparar, enviar, montar_mensagem
+from bot_telegram import LIMITE_TELEGRAM, comparar, enviar, montar_mensagem, prazo_troca
 from diagnostico import clientes_para_ligar, itens_em_falta, resumo_semana
 
 TOKEN_FALSO = "123456:TOKEN-DE-TESTE"
@@ -15,6 +15,14 @@ def test_comparar():
     assert comparar(110, 100) == " (▲ 10,0% vs semana anterior)"
     assert comparar(90, 100) == " (▼ 10,0% vs semana anterior)"
     assert comparar(50, 0) == ""
+
+
+def test_prazo_troca():
+    assert prazo_troca(-1) == "atrasada há 1 dia"
+    assert prazo_troca(-6) == "atrasada há 6 dias"
+    assert prazo_troca(0) == "vence hoje"
+    assert prazo_troca(1) == "vence amanhã"
+    assert prazo_troca(5) == "vence em 5 dias"
 
 
 def test_semana_sao_os_ultimos_7_dias(con):
@@ -36,7 +44,13 @@ def test_listas_respeitam_limite_e_ordem(con):
 def test_mensagem_completa_e_dentro_do_limite(con):
     texto = montar_mensagem(con, "https://exemplo.streamlit.app")
     assert len(texto) <= LIMITE_TELEGRAM
-    for trecho in ["Faturamento:", "OS concluídas:", "Estoque parado:", "Abrir o dashboard"]:
+    for trecho in [
+        "Faturamento:",
+        "OS concluídas:",
+        "Troca de óleo para chamar",
+        "Estoque parado:",
+        "Abrir o dashboard",
+    ]:
         assert trecho in texto
     assert "R$ " in texto
 

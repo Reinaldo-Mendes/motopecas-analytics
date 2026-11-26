@@ -14,8 +14,9 @@ P-D          20     40       3       1    nunca vendeu (cadastro 01/01/25)
 
 Clientes
 1 João (PF)      7 OS de troca de óleo a cada 30 dias, de 01/01/26 a 30/06/26 -> motoboy ativo
-2 Ana (PF)       3 compras no balcão (12/12/25, 01/06/26, 20/06/26) + 1 OS CANCELADA
-3 Transp. (PJ)   1 compra no balcão (30/06/26)                          -> frota
+2 Ana (PF)       3 compras no balcão (12/12/25, 01/06/26 com 10% de desconto, 20/06/26)
+                 + 1 OS CANCELADA de R$ 999 (orçamento caro)
+3 Transp. (PJ)   1 compra no balcão (30/06/26), paga no cartão de crédito -> frota
 4 Pedro (PF)     6 OS a cada 30 dias, de 03/08/25 a 31/12/25 -> motoboy que sumiu
 """
 
@@ -81,7 +82,10 @@ def montar_csvs(pasta) -> None:
             (4, data_br(date(2025, 12, 12)), 2, "P-C", 4, "10,00"),
         ],
         columns=["numero_pedido", "data", "id_cliente", "sku", "quantidade", "preco_unitario"],
-    ).assign(desconto_pct="0,00", forma_pagamento="PIX")
+    ).assign(
+        desconto_pct=["0,00", "0,10", "0,00", "0,00"],
+        forma_pagamento=["Cartão de crédito", "PIX", "PIX", "PIX"],
+    )
 
     ordens = []
     for cliente, inicio, vezes in [(1, date(2026, 1, 1), 7), (4, date(2025, 8, 3), 6)]:
@@ -217,6 +221,75 @@ def test_gasto_do_cliente_inclui_pecas_e_mao_de_obra(cenario):
     assert gastos[2] == 200 + 60 + 40  # a OS cancelada não conta
 
 
+def test_troca_de_oleo_prevista(cenario):
+    # João: trocas a cada 30 dias, a última em 30/06/26 -> próxima em 30/07/26 (em dia).
+    # Pedro: última em 31/12/25 -> deveria ter voltado em 30/01/26, 151 dias atrás.
+    # Ana nunca trocou óleo: fica fora.
+    trocas = {
+        r[0]: r[1:]
+        for r in cenario.execute(
+            "SELECT id_cliente, intervalo_dias, proxima_troca, dias_para_troca, situacao "
+            "FROM analise.clientes_troca_oleo"
+        ).fetchall()
+    }
+    assert set(trocas) == {1, 4}
+    assert trocas[1] == (30, date(2026, 7, 30), 30, "Em dia")
+    assert trocas[4] == (30, date(2026, 1, 30), -151, "Muito atrasada")
+
+
+def test_desconto_reconstroi_o_preco_cheio(cenario):
+    # Pedido 2: 10 un. a R$ 20,00 já com 10% de desconto -> preço cheio R$ 22,22 por un.
+    # Desconto dado = 200 / 0,9 - 200 = R$ 22,22.
+    pedido = linha(cenario, "SELECT * FROM analise.pedidos_desconto WHERE numero_pedido = 2")
+    assert pedido["receita"] == 200
+    assert pedido["valor_desconto"] == pytest.approx(22.22, abs=0.01)
+    total = valor(cenario, "SELECT sum(valor_desconto) FROM analise.pedidos_desconto")
+    assert total == pytest.approx(22.22, abs=0.01)  # os outros pedidos não tiveram desconto
+
+
+def test_custo_das_formas_de_pagamento(cenario):
+    # Documentos em 12 meses: pedidos 700 (crédito) + 200 + 60 + 40 e OS concluídas
+    # 7 x 25 + 100 de peça (João) + 6 x 25 (Pedro) = R$ 1.425,00 no total.
+    formas = {
+        r[0]: r[1:]
+        for r in cenario.execute(
+            "SELECT forma_pagamento, faturamento, custo_estimado, participacao "
+            "FROM analise.recebimentos"
+        ).fetchall()
+    }
+    faturamento, custo, participacao = formas["Cartão de crédito"]
+    assert faturamento == 700
+    assert float(custo) == pytest.approx(700 * 0.032)  # DuckDB devolve Decimal
+    assert float(participacao) == pytest.approx(700 / 1425)
+    assert formas["PIX"][1] == 0
+
+
+def test_cancelamento_por_faixa_de_orcamento(cenario):
+    # 13 OS até R$ 150 (12 de R$ 25 e uma de R$ 125), nenhuma cancelada;
+    # 1 OS de R$ 999 (faixa acima de R$ 500), cancelada.
+    faixas = {
+        r[0]: r[1:]
+        for r in cenario.execute(
+            "SELECT faixa_orcamento, qtd_os, qtd_canceladas, taxa_cancelamento, valor_perdido "
+            "FROM analise.cancelamento_por_faixa"
+        ).fetchall()
+    }
+    assert faixas["1. Até R$ 150"] == (13, 0, 0, 0)
+    assert faixas["4. Acima de R$ 500"] == (1, 1, 1, 999)
+
+
+def test_venda_casada_sem_o_item(cenario):
+    # Nenhuma troca de óleo levou filtro (o cenário nem tem filtro): taxa 0 e, sem preço de
+    # referência, potencial 0 (e não NULL).
+    oleo = linha(
+        cenario,
+        "SELECT * FROM analise.oficina_venda_casada WHERE servico = 'Troca de óleo'",
+    )
+    assert oleo["qtd_os"] == 13
+    assert oleo["taxa_atual"] == 0
+    assert oleo["receita_potencial_12m"] == 0
+
+
 # ---- Parte 2: dados completos x gabarito do gerador ----------------------------------
 
 
@@ -263,3 +336,53 @@ def test_classe_a_concentra_80_por_cento(con):
         FROM analise.estoque""",
     )
     assert 0.80 <= participacao_a <= 0.85
+
+
+def test_cancelamento_cresce_com_o_orcamento(con):
+    # O gerador faz o cliente desistir mais quando o orçamento é caro
+    taxas = [
+        r[0]
+        for r in con.execute(
+            "SELECT taxa_cancelamento FROM analise.cancelamento_por_faixa ORDER BY faixa_orcamento"
+        ).fetchall()
+    ]
+    assert taxas == sorted(taxas)
+    assert taxas[-1] > 5 * taxas[0]
+
+
+def test_mecanico_mais_lento_e_o_ultimo_contratado(con, verdade):
+    mais_lento = valor(con, "SELECT arg_max(mecanico, dias_medios) FROM analise.oficina_prazo")
+    ultimo = verdade.ordens_servico.groupby("mecanico").data_abertura.min().idxmax()
+    assert mais_lento == ultimo
+
+
+def test_filtro_na_troca_de_oleo_bate_com_o_gerador(con):
+    # O gerador põe filtro em 35% das trocas de óleo
+    taxa = valor(
+        con,
+        "SELECT taxa_atual FROM analise.oficina_venda_casada WHERE servico = 'Troca de óleo'",
+    )
+    assert 0.30 <= taxa <= 0.40
+
+
+def test_ritmo_de_troca_dos_motoboys_e_mensal(con):
+    # Motoboy troca óleo a cada ~30 dias no gerador
+    mediana = valor(
+        con,
+        "SELECT median(intervalo_dias) FROM analise.clientes_troca_oleo WHERE perfil = 'Motoboy'",
+    )
+    assert 25 <= mediana <= 35
+
+
+def test_desconto_em_15_por_cento_dos_pedidos(con):
+    # No balcão, o gerador dá 5% ou 10% de desconto em 15% dos pedidos
+    pct = valor(con, "SELECT avg((desconto_pct > 0)::INTEGER) FROM analise.pedidos_desconto")
+    assert 0.13 <= pct <= 0.17
+
+
+def test_participacoes_somam_100_por_cento(con):
+    assert valor(con, "SELECT sum(participacao) FROM analise.recebimentos") == pytest.approx(1)
+    os_moto = valor(con, "SELECT sum(participacao_os) FROM analise.estoque_por_moto")
+    parado_moto = valor(con, "SELECT sum(participacao_parado) FROM analise.estoque_por_moto")
+    assert os_moto == pytest.approx(1)
+    assert parado_moto == pytest.approx(1)

@@ -3,18 +3,24 @@
 import plotly.graph_objects as go
 import streamlit as st
 
+from componentes import cabecalho, secao
 from dados import consultar
-from formatacao import formatar_data, formatar_moeda, formatar_moeda_curta, formatar_numero
-from graficos import SERIES, aplicar_layout, barras_horizontais, mostrar
+from formatacao import (
+    formatar_data,
+    formatar_moeda,
+    formatar_moeda_curta,
+    formatar_numero,
+    formatar_pct,
+)
+from graficos import SERIES, aplicar_layout, barras_agrupadas, barras_horizontais, mostrar
 
-st.set_page_config(page_title="Estoque · Motopeças", page_icon="📦", layout="centered")
-st.title("Estoque")
+cabecalho("Estoque", "Dinheiro parado, itens em falta, o que comprar e a curva ABC.")
 
 estoque_todo = consultar("SELECT * FROM analise.estoque")
 
 # ---- Filtro (um só, no topo, vale para a página inteira) ----
 categorias = ["Todas", *sorted(estoque_todo.categoria.unique())]
-categoria = st.selectbox("Categoria", categorias)
+categoria = st.pills("Categoria", categorias, default="Todas") or "Todas"
 estoque = (
     estoque_todo if categoria == "Todas" else estoque_todo[estoque_todo.categoria == categoria]
 )
@@ -57,7 +63,7 @@ col2.metric(
 )
 
 # ---- Dinheiro parado por categoria ----
-st.subheader("Onde está o dinheiro parado")
+secao("Onde está o dinheiro parado")
 por_categoria = (
     sem_giro.groupby("categoria", as_index=False)
     .agg(valor=("valor_estoque", "sum"), itens=("sku", "count"))
@@ -99,8 +105,41 @@ else:
     )
     st.caption("Sugestão: promoção, kit com itens que giram ou devolução ao fornecedor.")
 
+# ---- Estoque x motos atendidas (loja toda) ----
+secao(
+    "Estoque × motos que a oficina atende",
+    "Peças específicas de cada moto (loja toda). Barras desiguais = compra fora do perfil.",
+)
+motos = consultar("SELECT * FROM analise.estoque_por_moto")
+rotulos_moto = [m.split(" ", 1)[1] for m in motos.moto]
+mostrar(
+    barras_agrupadas(
+        rotulos_moto,
+        {
+            "% das OS (12 meses)": (motos.participacao_os * 100).tolist(),
+            "% do estoque parado": (motos.participacao_parado * 100).tolist(),
+        },
+    ),
+    motos.assign(
+        Moto=motos.moto,
+        **{
+            "% das OS": motos.participacao_os.map(formatar_pct),
+            "% do estoque parado": motos.participacao_parado.map(formatar_pct),
+            "Valor parado": motos.valor_parado.map(formatar_moeda),
+            "Parado / estoque da moto": motos.parado_pct.map(formatar_pct),
+        },
+    )[["Moto", "% das OS", "% do estoque parado", "Valor parado", "Parado / estoque da moto"]],
+)
+raras = motos.nsmallest(2, "participacao_os")
+st.caption(
+    f"{' e '.join(m.split(' ', 1)[1] for m in raras.moto)} somam "
+    f"{formatar_pct(raras.participacao_os.sum(), 0)} das OS, mas "
+    f"{formatar_pct(raras.participacao_parado.sum(), 0)} do estoque parado. Para motos que "
+    "aparecem pouco, vale manter só o básico e comprar o resto sob encomenda."
+)
+
 # ---- O que comprar ----
-st.subheader("O que comprar agora")
+secao("O que comprar agora")
 comprar = estoque[estoque.situacao.isin(["Em falta", "Repor"])].sort_values(
     ["classe_abc", "receita_12m"], ascending=[True, False]
 )
@@ -134,7 +173,7 @@ else:
     st.caption("Ordenado pela curva ABC: itens A primeiro, porque são os que mais faturam.")
 
 # ---- Curva ABC (sempre da loja toda) ----
-st.subheader("Curva ABC")
+secao("Curva ABC", "Sempre da loja toda, independentemente do filtro.")
 abc = estoque_todo.sort_values("receita_12m", ascending=False).reset_index(drop=True)
 abc["pct_itens"] = (abc.index + 1) / len(abc) * 100
 abc["pct_receita"] = abc.receita_12m.cumsum() / abc.receita_12m.sum() * 100

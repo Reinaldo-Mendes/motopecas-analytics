@@ -13,13 +13,17 @@ import streamlit as st
 RAIZ = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RAIZ / "src"))  # para importar pipeline, formatacao e diagnostico
 
-from pipeline import CAMINHO_BANCO, construir_banco  # noqa: E402
+from pipeline import CAMINHO_BANCO, banco_atualizado, construir_banco  # noqa: E402
 
 
 @st.cache_resource(show_spinner="Preparando os dados pela primeira vez...")
 def garantir_banco() -> Path:
-    """Monta o banco a partir dos CSVs se ele ainda não existir (ex.: no primeiro deploy)."""
-    if not CAMINHO_BANCO.exists():
+    """Monta o banco se ele não existir ou tiver sido feito com CSVs/SQL antigos.
+
+    No Streamlit Cloud o arquivo .duckdb sobrevive a um novo deploy: sem essa checagem, código
+    novo leria um banco velho (sem as views novas).
+    """
+    if not banco_atualizado():
         construir_banco()
     return CAMINHO_BANCO
 

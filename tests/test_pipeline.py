@@ -1,9 +1,13 @@
 """Testes do pipeline: a limpeza precisa recuperar os números dos dados limpos originais."""
 
+import shutil
+
+import duckdb
 import pandas as pd
 import pytest
 
 from conftest import valor
+from pipeline import PASTA_BRUTOS, PASTA_SQL, banco_atualizado, construir_banco
 
 
 def test_todas_as_datas_foram_interpretadas(con):
@@ -95,3 +99,21 @@ def test_produtos_sem_preco_sao_sinalizados(con):
     )
     assert zerados > 0
     assert valor(con, "SELECT count(*) FROM limpo.produtos WHERE preco_pendente") == zerados
+
+
+def test_banco_desatualizado_e_reconhecido(tmp_path):
+    """Banco feito com SQL antigo (ou sem a marca de versão) precisa ser reconstruído."""
+    pasta_sql = tmp_path / "sql"
+    shutil.copytree(PASTA_SQL, pasta_sql)
+    banco = tmp_path / "teste.duckdb"
+    assert not banco_atualizado(banco, PASTA_BRUTOS, pasta_sql)  # não existe
+
+    construir_banco(PASTA_BRUTOS, banco, pasta_sql)
+    assert banco_atualizado(banco, PASTA_BRUTOS, pasta_sql)
+
+    (pasta_sql / "99_nova_view.sql").write_text("SELECT 1;", encoding="utf-8")
+    assert not banco_atualizado(banco, PASTA_BRUTOS, pasta_sql)  # SQL mudou
+
+    duckdb.connect(banco).execute("DROP TABLE meta.versao").close()
+    (pasta_sql / "99_nova_view.sql").unlink()
+    assert not banco_atualizado(banco, PASTA_BRUTOS, pasta_sql)  # banco de antes da marca

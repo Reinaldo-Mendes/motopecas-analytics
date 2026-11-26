@@ -10,6 +10,7 @@ Uso:
 
 from __future__ import annotations
 
+import hashlib
 import sys
 from pathlib import Path
 
@@ -42,6 +43,37 @@ def executar_sql(con: duckdb.DuckDBPyConnection, pasta: Path) -> list[str]:
     return [a.name for a in arquivos]
 
 
+def impressao_digital(pasta_brutos: Path = PASTA_BRUTOS, pasta_sql: Path = PASTA_SQL) -> str:
+    """Hash (resumo SHA-256) do conteúdo dos CSVs e dos SQL que geram o banco.
+
+    Se qualquer um desses arquivos mudar, o hash muda: é assim que o dashboard percebe que o
+    banco salvo foi feito com dados ou SQL antigos e precisa ser reconstruído.
+    """
+    resumo = hashlib.sha256()
+    arquivos = [pasta_brutos / f"{nome}.csv" for nome in TABELAS_BRUTAS]
+    arquivos += sorted(pasta_sql.glob("*.sql"))
+    for arquivo in arquivos:
+        resumo.update(arquivo.name.encode())
+        resumo.update(arquivo.read_bytes())
+    return resumo.hexdigest()
+
+
+def banco_atualizado(
+    caminho_banco: Path = CAMINHO_BANCO,
+    pasta_brutos: Path = PASTA_BRUTOS,
+    pasta_sql: Path = PASTA_SQL,
+) -> bool:
+    """True se o banco existe e foi construído com os CSVs e SQL atuais."""
+    if not caminho_banco.exists():
+        return False
+    try:
+        with duckdb.connect(caminho_banco, read_only=True) as con:
+            salvo = con.execute("SELECT impressao_digital FROM meta.versao").fetchone()[0]
+    except duckdb.Error:  # banco antigo, sem a tabela meta.versao
+        return False
+    return salvo == impressao_digital(pasta_brutos, pasta_sql)
+
+
 def construir_banco(
     pasta_brutos: Path = PASTA_BRUTOS,
     caminho_banco: Path = CAMINHO_BANCO,
@@ -54,6 +86,11 @@ def construir_banco(
         carregar_brutos(con, pasta_brutos)
         for nome in executar_sql(con, pasta_sql):
             print(f"  ok  {nome}")
+        con.execute("CREATE SCHEMA IF NOT EXISTS meta")
+        con.execute(
+            "CREATE OR REPLACE TABLE meta.versao AS SELECT ? AS impressao_digital",
+            [impressao_digital(pasta_brutos, pasta_sql)],
+        )
     temporario.replace(caminho_banco)
     return caminho_banco
 

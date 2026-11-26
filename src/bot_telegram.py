@@ -34,7 +34,7 @@ from formatacao import (
     formatar_pct,
     formatar_telefone,
 )
-from pipeline import CAMINHO_BANCO, construir_banco
+from pipeline import CAMINHO_BANCO, banco_atualizado, construir_banco
 
 LIMITE_TELEGRAM = 4096  # tamanho máximo de uma mensagem (conferido nos testes)
 
@@ -144,7 +144,7 @@ def main() -> None:
     parser.add_argument("--mostrar", action="store_true", help="só mostra, não envia")
     args = parser.parse_args()
 
-    if not CAMINHO_BANCO.exists():
+    if not banco_atualizado():
         construir_banco()
     with duckdb.connect(CAMINHO_BANCO, read_only=True) as con:
         texto = montar_mensagem(con, os.environ.get("DASHBOARD_URL"))

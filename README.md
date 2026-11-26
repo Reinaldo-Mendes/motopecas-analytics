@@ -14,6 +14,7 @@ uv sync                                  # cria o ambiente e instala as dependê
 uv run python src/gerar_dados.py         # (opcional) regera os CSVs "sujos" em data/raw/
 uv run python src/pipeline.py            # limpa os CSVs e monta data/motopecas.duckdb
 uv run streamlit run app/Home.py         # abre o dashboard em http://localhost:8501
+uv run python src/bot_telegram.py --mostrar   # mostra o resumo semanal do bot
 uv run ruff check .                      # lint
 uv run pytest                            # testes
 ```
@@ -92,7 +93,32 @@ todo gráfico tem a mesma informação em tabela logo abaixo.
 Se o banco não existir (ex.: no primeiro deploy), o dashboard roda o pipeline sozinho a partir
 dos CSVs versionados.
 
+## Bot do Telegram (`src/bot_telegram.py`)
+
+Toda segunda-feira às 8h (horário de Brasília), o GitHub Actions monta o banco a partir dos CSVs
+e envia ao Telegram um resumo da semana: faturamento e OS contra a semana anterior, itens
+campeões em falta, clientes que começaram a sumir (com telefone, para ligar) e o estoque parado.
+
+Para ativar no seu repositório:
+
+1. No Telegram, fale com o **@BotFather**, envie `/newbot` e guarde o **token** que ele devolve.
+2. Mande qualquer mensagem para o seu bot e abra
+   `https://api.telegram.org/bot<TOKEN>/getUpdates` no navegador: o número em `"chat":{"id":...}`
+   é o **chat id**.
+3. No GitHub: *Settings > Secrets and variables > Actions*. Crie os secrets `TELEGRAM_TOKEN` e
+   `TELEGRAM_CHAT_ID` e, se quiser, a variable `DASHBOARD_URL`.
+4. Na aba *Actions*, rode "Resumo semanal no Telegram" manualmente para testar.
+
+Sem token configurado, o script só mostra a mensagem no terminal. O token nunca aparece no
+código nem nos logs (o erro do Telegram é tratado para não exibir a URL, que contém o token).
+
+Como os dados são fictícios e terminam em 26/11/2026, o resumo é sempre o da mesma semana.
+Com dados reais do ERP, ele acompanharia a semana corrente sem nenhuma mudança no código.
+
+## Integração contínua
+
+`.github/workflows/testes.yml` roda `ruff` e `pytest` a cada push e pull request.
+
 ## Próximas etapas
 
-1. Bot do Telegram com resumo semanal no GitHub Actions
-2. Deploy no Streamlit Community Cloud
+1. Deploy no Streamlit Community Cloud

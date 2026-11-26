@@ -18,6 +18,70 @@ def consultar_linha(con: duckdb.DuckDBPyConnection, sql: str) -> dict:
     return dict(zip(colunas, linha, strict=True)) if linha else {}
 
 
+def consultar_linhas(con: duckdb.DuckDBPyConnection, sql: str) -> list[dict]:
+    """Todas as linhas de uma consulta como lista de dicionários."""
+    cursor = con.execute(sql)
+    colunas = [c[0] for c in cursor.description]
+    return [dict(zip(colunas, linha, strict=True)) for linha in cursor.fetchall()]
+
+
+def resumo_semana(con: duckdb.DuckDBPyConnection) -> dict:
+    """Últimos 7 dias com dados x 7 dias anteriores: faturamento e OS concluídas."""
+    return consultar_linha(
+        con,
+        """
+        WITH movimento AS (
+            SELECT data, receita AS valor, 0 AS os FROM analise.itens_vendidos
+            UNION ALL
+            SELECT data_abertura, valor_mao_obra, 1 FROM analise.ordens_concluidas
+        )
+        SELECT
+            r.data_referencia - 6 AS inicio,
+            r.data_referencia AS fim,
+            sum(m.valor) FILTER (WHERE m.data > r.data_referencia - 7) AS faturamento,
+            sum(m.valor) FILTER (WHERE m.data > r.data_referencia - 14
+                                   AND m.data <= r.data_referencia - 7) AS faturamento_anterior,
+            sum(m.os) FILTER (WHERE m.data > r.data_referencia - 7) AS qtd_os,
+            sum(m.os) FILTER (WHERE m.data > r.data_referencia - 14
+                                AND m.data <= r.data_referencia - 7) AS qtd_os_anterior
+        FROM movimento AS m
+        CROSS JOIN analise.referencia AS r
+        GROUP BY r.data_referencia
+    """,
+    )
+
+
+def itens_em_falta(con: duckdb.DuckDBPyConnection, limite: int = 5) -> list[dict]:
+    """Itens zerados com saída recente, os que mais faturam primeiro (curva A no topo)."""
+    return consultar_linhas(
+        con,
+        f"""
+        SELECT descricao, classe_abc, qtd_vendida_90d
+        FROM analise.estoque
+        WHERE situacao = 'Em falta'
+        ORDER BY classe_abc, receita_12m DESC
+        LIMIT {int(limite)}
+    """,
+    )
+
+
+def clientes_para_ligar(con: duckdb.DuckDBPyConnection, limite: int = 5) -> list[dict]:
+    """Clientes 'em risco' (começaram a sumir), dos que mais gastam para os que menos.
+
+    'Em risco' e não 'inativo': quem parou há pouco tempo ainda tem boa chance de voltar.
+    """
+    return consultar_linhas(
+        con,
+        f"""
+        SELECT nome, telefone, perfil, dias_desde_ultima_visita, gasto_12m
+        FROM analise.clientes_perfil
+        WHERE status = 'Em risco'
+        ORDER BY gasto_12m DESC
+        LIMIT {int(limite)}
+    """,
+    )
+
+
 def resumo_meses(con: duckdb.DuckDBPyConnection) -> dict:
     """Último mês completo e o anterior, para comparar (ex.: out/2026 x set/2026)."""
     meses = con.execute("""

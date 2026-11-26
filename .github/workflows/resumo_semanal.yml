@@ -1,0 +1,32 @@
+# Envia o resumo semanal da loja para o Telegram toda segunda-feira às 8h (horário de Brasília).
+# Configuração no GitHub: Settings > Secrets and variables > Actions
+#   Secrets:   TELEGRAM_TOKEN, TELEGRAM_CHAT_ID
+#   Variables: DASHBOARD_URL (opcional)
+name: Resumo semanal no Telegram
+
+on:
+  schedule:
+    - cron: "0 11 * * 1"  # o cron do GitHub usa UTC: 11h UTC = 8h em Brasília
+  workflow_dispatch:  # permite rodar na mão pela aba Actions
+
+jobs:
+  resumo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Instalar dependências
+        run: uv sync --locked --no-dev
+
+      - name: Montar o banco a partir dos CSVs
+        run: uv run python src/pipeline.py
+
+      - name: Enviar resumo
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DASHBOARD_URL: ${{ vars.DASHBOARD_URL }}
+        run: uv run python src/bot_telegram.py

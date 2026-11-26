@@ -7,6 +7,8 @@ gestão da loja).
 
 > Todos os dados são gerados por script. Nenhum dado real de cliente entra neste repositório.
 
+**Dashboard no ar:** [motopecas-analytics.streamlit.app](https://motopecas-analytics.streamlit.app/) (feito para abrir bem no celular).
+
 ## Como rodar
 
 ```bash
@@ -120,6 +122,9 @@ Com dados reais do ERP, ele acompanharia a semana corrente sem nenhuma mudança 
 `.github/workflows/testes.yml` roda `ruff` e `pytest` a cada push e pull request.
 
 ## Deploy (Streamlit Community Cloud)
+
+O app publicado está em <https://motopecas-analytics.streamlit.app/> e é atualizado
+automaticamente a cada push na `main`. Para publicar uma cópia:
 
 1. Em [share.streamlit.io](https://share.streamlit.io), entre com a conta do GitHub e clique em
    *Create app*.

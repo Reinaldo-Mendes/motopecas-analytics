@@ -45,7 +45,7 @@ O banco DuckDB é montado em três camadas (schemas):
 |---|---|
 | `bruto` | Os CSVs exatamente como chegaram, tudo como texto |
 | `limpo` | Tipos corretos, telefones padronizados, preços zerados corrigidos, clientes unificados |
-| `analise` | Views prontas para o dashboard: `itens_vendidos`, `ordens_concluidas`, `qualidade_dados` |
+| `analise` | Views prontas para o dashboard e o bot (base e métricas) |
 
 Os arquivos SQL rodam em ordem numérica:
 
@@ -55,13 +55,24 @@ Os arquivos SQL rodam em ordem numérica:
   recusando nomes ambíguos. Nos dados de teste: 92% dos duplicados encontrados, nenhum falso.
 - `03_base_analitica.sql`: une balcão e oficina numa visão única de faturamento (OS canceladas
   ficam de fora) e gera o relatório de qualidade dos dados.
+- `04_metricas_estoque.sql`: curva ABC, dias sem venda, cobertura e situação de cada SKU
+  (sem giro, em falta, repor).
+- `05_metricas_vendas.sql`: faturamento e margem mensais, margem por categoria.
+- `06_metricas_oficina.sql`: produção por mecânico e desempenho por tipo de serviço.
+- `07_metricas_clientes.sql`: **perfil descoberto pelo comportamento** (o ERP não sabe quem é
+  motoboy) e status ativo / em risco / inativo. Acerta 96,6% dos perfis reais.
 
-Os testes conferem a limpeza contra o "gabarito" do gerador: o faturamento depois da limpeza
-tem que bater com o dos dados originais, antes da sujeira.
+As métricas usam como "hoje" a última data com movimento nos dados, não o relógio do
+computador, então os números não mudam conforme o dia em que o dashboard é aberto.
+
+Testes em duas frentes:
+- **contra o gabarito do gerador**: o faturamento depois da limpeza tem que bater com o dos
+  dados originais, e o perfil descoberto com o perfil real;
+- **cenário montado à mão** (`tests/test_metricas.py`): 5 produtos e 4 clientes com cada
+  resultado calculado nos comentários.
 
 ## Próximas etapas
 
-1. Views de métricas (curva ABC, estoque parado, perfil de cliente por frequência)
-2. Dashboard Streamlit (Estoque, Vendas e Margem, Oficina, Clientes)
-3. Bot do Telegram com resumo semanal no GitHub Actions
-4. Deploy no Streamlit Community Cloud
+1. Dashboard Streamlit (Estoque, Vendas e Margem, Oficina, Clientes)
+2. Bot do Telegram com resumo semanal no GitHub Actions
+3. Deploy no Streamlit Community Cloud

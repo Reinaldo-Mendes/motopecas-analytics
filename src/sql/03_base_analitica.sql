@@ -71,6 +71,21 @@ LEFT JOIN limpo.clientes_unificados AS u ON u.id_cliente = o.id_cliente
 WHERE o.status = 'Concluída';
 
 
+-- "Hoje" das análises = último dia com movimento nos dados (e não current_date). Assim os
+-- números não mudam conforme o dia em que alguém abre o dashboard.
+-- Considera também OS só de mão de obra (sem peça), que não aparecem em itens_vendidos.
+CREATE OR REPLACE VIEW analise.referencia AS
+WITH movimento AS (
+    SELECT data FROM analise.itens_vendidos
+    UNION ALL
+    SELECT data_abertura FROM analise.ordens_concluidas
+)
+SELECT
+    max(data) AS data_referencia,
+    min(data) AS data_inicial
+FROM movimento;
+
+
 -- Relatório "antes x depois" da limpeza: mostra ao cliente o que havia de errado nos dados.
 CREATE OR REPLACE VIEW analise.qualidade_dados AS
 SELECT * FROM (VALUES

@@ -23,6 +23,8 @@ dev = [
 [tool.ruff]
 line-length = 100
 target-version = "py312"
+# Pastas com módulos do próprio projeto (para o ruff ordenar os imports corretamente)
+src = ["src", "app", "tests"]
 
 [tool.ruff.lint]
 # E/F: erros básicos, I: ordem dos imports, UP: sintaxe moderna, B: bugs comuns, SIM: simplificações

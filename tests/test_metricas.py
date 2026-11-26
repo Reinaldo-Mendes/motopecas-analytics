@@ -24,8 +24,8 @@ from datetime import date, timedelta
 import duckdb
 import pandas as pd
 import pytest
-from conftest import valor
 
+from conftest import valor
 from pipeline import construir_banco
 
 REFERENCIA = date(2026, 6, 30)

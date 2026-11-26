@@ -13,6 +13,7 @@ gestão da loja).
 uv sync                                  # cria o ambiente e instala as dependências
 uv run python src/gerar_dados.py         # (opcional) regera os CSVs "sujos" em data/raw/
 uv run python src/pipeline.py            # limpa os CSVs e monta data/motopecas.duckdb
+uv run streamlit run app/Home.py         # abre o dashboard em http://localhost:8501
 uv run ruff check .                      # lint
 uv run pytest                            # testes
 ```
@@ -71,8 +72,27 @@ Testes em duas frentes:
 - **cenário montado à mão** (`tests/test_metricas.py`): 5 produtos e 4 clientes com cada
   resultado calculado nos comentários.
 
+## Dashboard (`app/`)
+
+Pensado para o dono da loja abrir no celular: uma coluna, KPIs (Key Performance Indicators,
+indicadores-chave) no topo, um filtro por página e uma frase explicando cada gráfico.
+
+| Página | O que responde |
+|---|---|
+| Visão geral | Como foi o último mês e os principais achados em linguagem simples |
+| Estoque | Quanto dinheiro está parado, o que está em falta e o que comprar primeiro (curva ABC) |
+| Vendas e Margem | Evolução do faturamento, margem por categoria e efeito da chuva nos pneus |
+| Oficina | Volume de OS, produção por mecânico e quais serviços trazem mais receita |
+| Clientes | Perfil descoberto pela frequência e a lista de quem sumiu, para ligar |
+
+Os textos dos achados vêm de `src/diagnostico.py`, que o bot do Telegram também vai usar.
+As cores dos gráficos foram validadas para daltonismo e contraste nos temas claro e escuro, e
+todo gráfico tem a mesma informação em tabela logo abaixo.
+
+Se o banco não existir (ex.: no primeiro deploy), o dashboard roda o pipeline sozinho a partir
+dos CSVs versionados.
+
 ## Próximas etapas
 
-1. Dashboard Streamlit (Estoque, Vendas e Margem, Oficina, Clientes)
-2. Bot do Telegram com resumo semanal no GitHub Actions
-3. Deploy no Streamlit Community Cloud
+1. Bot do Telegram com resumo semanal no GitHub Actions
+2. Deploy no Streamlit Community Cloud

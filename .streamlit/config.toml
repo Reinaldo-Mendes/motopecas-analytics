@@ -1,0 +1,6 @@
+[theme]
+# Azul do slot 1 da paleta validada; claro/escuro segue a preferência do sistema
+primaryColor = "#257de0"
+
+[server]
+headless = true

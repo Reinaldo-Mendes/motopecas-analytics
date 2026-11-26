@@ -519,6 +519,14 @@ def gerar_nome(fake: Faker, rng: np.random.Generator) -> str:
     return " ".join([fake.first_name(), *sobrenomes])
 
 
+def gerar_nome_empresa(fake: Faker, rng: np.random.Generator) -> str:
+    """Razão social de empresa com frota de motos (entregas, farmácia etc.)."""
+    ramo = rng.choice(
+        ["Entregas", "Express", "Logística", "Farmácia", "Distribuidora", "Delivery", "Transportes"]
+    )
+    return f"{fake.last_name()} {ramo} {rng.choice(['Ltda.', 'ME', 'S.A.'], p=[0.7, 0.2, 0.1])}"
+
+
 def gerar_telefone(rng: np.random.Generator) -> str:
     """Celular fictício só com dígitos: DDD + 9 + 8 dígitos."""
     return DDD + "9" + "".join(str(d) for d in rng.integers(0, 10, size=8))
@@ -555,7 +563,9 @@ def gerar_clientes(fake: Faker, rng: np.random.Generator, inicio: date, fim: dat
         linhas.append(
             {
                 "id_cliente": id_cliente,
-                "nome": fake.company() if perfil == "frota" else gerar_nome(fake, rng),
+                "nome": gerar_nome_empresa(fake, rng)
+                if perfil == "frota"
+                else gerar_nome(fake, rng),
                 "cpf_cnpj": fake.cnpj() if perfil == "frota" else fake.cpf(),
                 "tipo_pessoa": "PJ" if perfil == "frota" else "PF",
                 "telefone": gerar_telefone(rng),

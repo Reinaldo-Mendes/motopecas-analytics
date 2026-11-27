@@ -14,6 +14,7 @@ PAGINAS: dict[str, tuple[str, str, str]] = {
     "vendas": ("paginas/vendas.py", "Vendas e margem", ":material/payments:"),
     "oficina": ("paginas/oficina.py", "Oficina", ":material/build:"),
     "clientes": ("paginas/clientes.py", "Clientes", ":material/group:"),
+    "dados_brutos": ("paginas/dados_brutos.py", "Dados brutos", ":material/table_view:"),
 }
 
 # tipo do achado -> (rótulo, ícone, cor do selo). Cor nunca vem sozinha: sempre com rótulo.

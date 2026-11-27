@@ -16,6 +16,7 @@ TITULOS = {
     "vendas.py": "Vendas e margem",
     "oficina.py": "Oficina",
     "clientes.py": "Clientes",
+    "dados_brutos.py": "Dados brutos",
 }
 
 

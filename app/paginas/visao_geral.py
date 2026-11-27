@@ -152,3 +152,4 @@ with st.expander("Qualidade dos dados recebidos do sistema", icon=":material/fac
         "SELECT problema AS Problema, quantidade AS Quantidade FROM analise.qualidade_dados"
     )
     st.dataframe(qualidade, hide_index=True)
+    link_pagina("dados_brutos", "Ver os dados como chegaram e o antes × depois")

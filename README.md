@@ -70,6 +70,8 @@ Os arquivos SQL rodam em ordem numérica:
 - `08_metricas_comercial.sql`: descontos do balcão (quanto, para quem e efeito no ticket) e
   custo estimado de cada forma de pagamento. As taxas de maquininha e boleto são
   **premissas** declaradas na view `analise.premissas_pagamento`, fáceis de trocar.
+- `09_exemplos_limpeza.sql`: um exemplo de cada problema corrigido (data, telefone, cadastro
+  duplicado, preço zerado), com o valor bruto ao lado do limpo, para a página de dados brutos.
 
 As métricas usam como "hoje" a última data com movimento nos dados, não o relógio do
 computador, então os números não mudam conforme o dia em que o dashboard é aberto.
@@ -95,6 +97,7 @@ explicando cada gráfico. `app/Home.py` monta o menu (`st.navigation`) e as pág
 | Vendas e margem | Faturamento, margem, descontos sem critério, custo das formas de pagamento e chuva x pneus |
 | Oficina | Volume de OS, orçamentos recusados, produção e prazo por mecânico, serviços e venda casada |
 | Clientes | Troca de óleo prevista para a semana, perfil descoberto pela frequência e quem sumiu |
+| Dados brutos | Os CSVs exatamente como saíram do ERP, o antes × depois de cada correção e o download dos arquivos |
 
 Os achados vêm de `src/diagnostico.py` (o mesmo que o bot do Telegram usa).
 As cores dos gráficos foram validadas para daltonismo e contraste nos temas claro e escuro, e

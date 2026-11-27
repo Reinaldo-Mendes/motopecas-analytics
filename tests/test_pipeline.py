@@ -117,3 +117,15 @@ def test_banco_desatualizado_e_reconhecido(tmp_path):
     duckdb.connect(banco).execute("DROP TABLE meta.versao").close()
     (pasta_sql / "99_nova_view.sql").unlink()
     assert not banco_atualizado(banco, PASTA_BRUTOS, pasta_sql)  # banco de antes da marca
+
+
+def test_exemplos_de_limpeza(con):
+    """A página de dados brutos mostra um exemplo de cada problema, já corrigido."""
+    datas = con.execute("SELECT formato, valor_limpo FROM analise.exemplo_datas").fetchall()
+    assert len(datas) == 4  # os 4 formatos de data do gerador
+    assert all(d is not None for _, d in datas)
+    assert "outro" not in {f for f, _ in datas}
+    precos = valor(con, "SELECT min(valor_limpo) FROM analise.exemplo_precos")
+    assert precos > 0  # nenhum preço continua zerado
+    motivos = valor(con, "SELECT count(DISTINCT motivo) FROM analise.exemplo_duplicados")
+    assert motivos >= 3
